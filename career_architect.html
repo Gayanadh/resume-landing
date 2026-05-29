@@ -105,50 +105,90 @@ a{text-decoration:none;color:inherit}
 .upload-zone-btn:hover{opacity:.88}
 .upload-zone-hint{font-size:10px;color:var(--text-muted);margin-top:12px}
 
-.resume-page{width:595px;min-height:842px;background:#fff;border-radius:4px;box-shadow:0 8px 40px rgba(0,0,0,.5);position:relative;z-index:1;padding:40px;color:#1a1a2e;font-size:10.5px;line-height:1.55;overflow:hidden}
+/* ── RESUME PAGE — A4 two-column professional layout ── */
+.resume-page{width:595px;min-height:842px;background:#fff;border-radius:4px;box-shadow:0 8px 40px rgba(0,0,0,.5);position:relative;z-index:1;color:#1a1a2e;font-size:10.5px;line-height:1.55;overflow:hidden;display:flex;flex-direction:row}
 
-/* Resume inner styles */
-.r-header{display:flex;gap:20px;margin-bottom:20px;align-items:flex-start}
-.r-photo{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#4f46e5);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff;flex-shrink:0}
-.r-name{font-size:22px;font-weight:800;color:#1e293b;letter-spacing:-.5px}
-.r-title{font-size:12px;color:#6366f1;font-weight:600;margin-top:2px}
-.r-bio{font-size:10px;color:#64748b;margin-top:6px;line-height:1.6}
-.r-contact{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:9px;color:#64748b}
-.r-contact span{display:flex;align-items:center;gap:3px}
+/* Left sidebar column */
+.r-left{width:200px;background:#f8f7ff;padding:28px 18px;display:flex;flex-direction:column;flex-shrink:0}
+/* Right main column */
+.r-right{flex:1;padding:28px 24px;display:flex;flex-direction:column;min-width:0}
 
-.r-section{margin-top:18px}
-.r-section-head{font-size:11px;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:.1em;padding-bottom:5px;border-bottom:2px solid #6366f1;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
-.r-section-edit{font-size:9px;color:#6366f1;cursor:pointer;font-weight:500;opacity:0;transition:opacity .2s}
+/* ── Resume inner styles ── */
+.r-photo-wrap{display:flex;justify-content:center;margin-bottom:14px}
+.r-photo{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#4f46e5);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;color:#fff;flex-shrink:0;border:3px solid #ede9fe}
+.r-name{font-size:18px;font-weight:800;color:#1e293b;letter-spacing:-.3px;text-align:center;line-height:1.25}
+.r-title{font-size:10px;color:#6366f1;font-weight:600;margin-top:3px;text-align:center;text-transform:uppercase;letter-spacing:.06em}
+.r-bio{font-size:9px;color:#64748b;margin-top:8px;line-height:1.6;text-align:center}
+
+.r-contact{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+.r-contact span{display:flex;align-items:center;gap:6px;font-size:8.5px;color:#475569;word-break:break-all}
+.r-contact-icon{width:14px;height:14px;border-radius:50%;background:rgba(99,102,241,.1);display:flex;align-items:center;justify-content:center;font-size:8px;color:#6366f1;flex-shrink:0}
+
+.r-section{margin-top:16px}
+.r-section-head{font-size:9px;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:.12em;padding-bottom:4px;border-bottom:1.5px solid #6366f1;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.r-section-edit{font-size:8px;color:#6366f1;cursor:pointer;font-weight:500;opacity:0;transition:opacity .2s}
 .r-section:hover .r-section-edit{opacity:1}
 
+/* Skills with progress bars */
+.r-skills{display:flex;flex-direction:column;gap:7px}
+.r-skill{}
+.r-skill-name{font-size:8.5px;font-weight:600;color:#1e293b;margin-bottom:2px}
+.r-skill-bar{height:3px;background:#e2e8f0;border-radius:2px;overflow:hidden}
+.r-skill-fill{height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6);border-radius:2px}
+
+/* Tools as tag buttons */
+.r-tags{display:flex;flex-wrap:wrap;gap:4px}
+.r-tag{background:#ede9fe;color:#4f46e5;padding:2px 8px;border-radius:10px;font-size:8px;font-weight:500}
+
+/* Languages with proficiency dots */
+.r-langs{display:flex;flex-direction:column;gap:5px}
+.r-lang{display:flex;align-items:center;gap:5px}
+.r-lang-name{font-size:8.5px;font-weight:600;color:#1e293b;min-width:50px}
+.r-lang-dots{display:flex;gap:2px}
+.r-lang-dot{width:5px;height:5px;border-radius:50%;background:#e2e8f0}
+.r-lang-dot.filled{background:#6366f1}
+
+/* Experience entries (right column) */
 .r-job{margin-bottom:12px}
 .r-job-head{display:flex;justify-content:space-between;align-items:baseline}
 .r-job-title{font-size:11px;font-weight:700;color:#1e293b}
-.r-job-period{font-size:9px;color:#94a3b8}
+.r-job-period{font-size:8.5px;color:#94a3b8;white-space:nowrap;margin-left:8px}
 .r-job-company{font-size:10px;color:#6366f1;font-weight:600}
 .r-job-bullets{margin-top:4px;padding-left:14px}
-.r-job-bullets li{font-size:10px;color:#475569;margin-bottom:2px;line-height:1.5}
+.r-job-bullets li{font-size:9.5px;color:#475569;margin-bottom:2px;line-height:1.5}
 
-.r-skills{display:flex;flex-wrap:wrap;gap:8px}
-.r-skill{flex:1;min-width:140px}
-.r-skill-name{font-size:10px;font-weight:600;color:#1e293b;margin-bottom:3px}
-.r-skill-bar{height:4px;background:#e2e8f0;border-radius:2px;overflow:hidden}
-.r-skill-fill{height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6);border-radius:2px}
-
-.r-tags{display:flex;flex-wrap:wrap;gap:5px}
-.r-tag{background:#f1f5f9;color:#475569;padding:3px 10px;border-radius:12px;font-size:9px;font-weight:500}
-
-.r-langs{display:flex;flex-wrap:wrap;gap:10px}
-.r-lang{display:flex;align-items:center;gap:5px}
-.r-lang-name{font-size:10px;font-weight:600;color:#1e293b}
-.r-lang-dots{display:flex;gap:2px}
-.r-lang-dot{width:6px;height:6px;border-radius:50%;background:#e2e8f0}
-.r-lang-dot.filled{background:#6366f1}
-
+/* Education entries (right column) */
 .r-edu{margin-bottom:10px}
 .r-edu-degree{font-size:11px;font-weight:700;color:#1e293b}
 .r-edu-school{font-size:10px;color:#6366f1}
-.r-edu-detail{font-size:9px;color:#94a3b8}
+.r-edu-detail{font-size:8.5px;color:#94a3b8}
+
+/* Single column layout override */
+.resume-page.layout-single{display:block}
+.resume-page.layout-single .r-left{width:100%;background:transparent;padding:0 0 20px 0;flex-direction:row;flex-wrap:wrap;gap:16px;align-items:flex-start}
+.resume-page.layout-single .r-photo-wrap{justify-content:flex-start;margin-bottom:0}
+.resume-page.layout-single .r-photo{width:64px;height:64px;font-size:22px;border:none}
+.resume-page.layout-single .r-name{text-align:left;font-size:22px}
+.resume-page.layout-single .r-title{text-align:left;font-size:12px}
+.resume-page.layout-single .r-bio{text-align:left;font-size:10px}
+.resume-page.layout-single .r-contact{flex-direction:row;flex-wrap:wrap;gap:8px;margin-top:8px;width:100%}
+.resume-page.layout-single .r-contact-icon{display:none}
+.resume-page.layout-single .r-section{margin-top:18px;width:100%}
+.resume-page.layout-single .r-skills{flex-direction:row;flex-wrap:wrap;gap:8px}
+.resume-page.layout-single .r-skill{flex:1;min-width:140px}
+.resume-page.layout-single .r-skill-name{font-size:10px}
+.resume-page.layout-single .r-skill-bar{height:4px}
+.resume-page.layout-single .r-tags{gap:5px}
+.resume-page.layout-single .r-tag{background:#f1f5f9;color:#475569;padding:3px 10px;border-radius:12px;font-size:9px}
+.resume-page.layout-single .r-langs{flex-direction:row;flex-wrap:wrap;gap:10px}
+.resume-page.layout-single .r-lang-name{font-size:10px;min-width:auto}
+.resume-page.layout-single .r-lang-dot{width:6px;height:6px}
+.resume-page.layout-single .r-section-head{font-size:11px;padding-bottom:5px;border-bottom-width:2px}
+.resume-page.layout-single .r-job-bullets li{font-size:10px}
+.resume-page.layout-single .r-edu-degree{font-size:11px}
+.resume-page.layout-single .r-edu-school{font-size:10px}
+.resume-page.layout-single .r-edu-detail{font-size:9px}
+.resume-page.layout-single .r-left-info{flex:1;min-width:200px}
 
 /* ── RIGHT PANEL ── */
 .right-panel{width:var(--right-w);background:var(--bg-sidebar);border-left:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow:hidden}
@@ -386,105 +426,7 @@ a{text-decoration:none;color:inherit}
       <input type="file" class="hidden-input" id="mainFileInput" accept=".pdf,.docx" onchange="handleFileSelect(this)">
 
       <div class="resume-page" id="resumePage" style="display:none">
-        <!-- PROFILE HEADER -->
-        <div class="r-header">
-          <div class="r-photo" id="rPhoto">OR</div>
-          <div style="flex:1">
-            <div class="r-name" id="rName">Olivia Rhye</div>
-            <div class="r-title" id="rTitle">Senior Product Designer</div>
-            <div class="r-bio" id="rBio">Product designer with 6+ years of experience crafting user-centered digital experiences for SaaS products. Passionate about solving complex problems through intuitive design and collaborative teamwork.</div>
-            <div class="r-contact" id="rContact">
-              <span>&#9993; olivia@example.com</span>
-              <span>&#9742; +1 (555) 123-4567</span>
-              <span>&#9673; San Francisco, CA</span>
-              <span>&#128279; linkedin.com/in/oliviarhye</span>
-              <span>&#127760; oliviarhe.design</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- EXPERIENCE -->
-        <div class="r-section" id="rsec-experience">
-          <div class="r-section-head">Experience <span class="r-section-edit" onclick="focusField('summary')">Edit</span></div>
-          <div id="rExperience">
-            <div class="r-job">
-              <div class="r-job-head"><span class="r-job-title">Senior Product Designer</span><span class="r-job-period">2021 - Present</span></div>
-              <div class="r-job-company">Acme Inc.</div>
-              <ul class="r-job-bullets">
-                <li>Led the design of a comprehensive SaaS platform used by 50K+ customers.</li>
-                <li>Collaborated with PMs and engineers to define product roadmap and features.</li>
-                <li>Improved user engagement by 32% through data-driven design decisions.</li>
-              </ul>
-            </div>
-            <div class="r-job">
-              <div class="r-job-head"><span class="r-job-title">Product Designer</span><span class="r-job-period">2018 - 2021</span></div>
-              <div class="r-job-company">Studio Graphite</div>
-              <ul class="r-job-bullets">
-                <li>Designed and shipped 10+ features for web and mobile applications.</li>
-                <li>Conducted user research and usability testing to inform design solutions.</li>
-                <li>Created design systems and component libraries for consistent UX.</li>
-              </ul>
-            </div>
-            <div class="r-job">
-              <div class="r-job-head"><span class="r-job-title">UI/UX Designer</span><span class="r-job-period">2016 - 2018</span></div>
-              <div class="r-job-company">Pixel Perfect</div>
-              <ul class="r-job-bullets">
-                <li>Designed marketing websites and product interfaces for clients.</li>
-                <li>Translated complex requirements into simple, beautiful designs.</li>
-                <li>Worked closely with developers to ensure pixel-perfect implementation.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- SKILLS -->
-        <div class="r-section" id="rsec-skills">
-          <div class="r-section-head">Skills <span class="r-section-edit" onclick="focusField('skills')">Edit</span></div>
-          <div class="r-skills" id="rSkills">
-            <div class="r-skill"><div class="r-skill-name">User Research</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:95%"></div></div></div>
-            <div class="r-skill"><div class="r-skill-name">Wireframing</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:85%"></div></div></div>
-            <div class="r-skill"><div class="r-skill-name">Prototyping</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:80%"></div></div></div>
-            <div class="r-skill"><div class="r-skill-name">UI Design</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:90%"></div></div></div>
-            <div class="r-skill"><div class="r-skill-name">Interaction Design</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:85%"></div></div></div>
-            <div class="r-skill"><div class="r-skill-name">Design Systems</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:80%"></div></div></div>
-            <div class="r-skill"><div class="r-skill-name">Figma</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:92%"></div></div></div>
-            <div class="r-skill"><div class="r-skill-name">Adobe XD</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:75%"></div></div></div>
-          </div>
-        </div>
-
-        <!-- EDUCATION -->
-        <div class="r-section" id="rsec-education">
-          <div class="r-section-head">Education <span class="r-section-edit" onclick="focusField('summary')">Edit</span></div>
-          <div id="rEducation">
-            <div class="r-edu">
-              <div class="r-edu-degree">B.A. in Design</div>
-              <div class="r-edu-school">University of California, Davis</div>
-              <div class="r-edu-detail">2012 - 2016 &middot; Davis, CA</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- TOOLS -->
-        <div class="r-section" id="rsec-tools">
-          <div class="r-section-head">Tools <span class="r-section-edit" onclick="focusField('skills')">Edit</span></div>
-          <div class="r-tags" id="rTools">
-            <span class="r-tag">Figma</span>
-            <span class="r-tag">Sketch</span>
-            <span class="r-tag">Adobe XD</span>
-            <span class="r-tag">Photoshop</span>
-            <span class="r-tag">Illustrator</span>
-            <span class="r-tag">Notion</span>
-          </div>
-        </div>
-
-        <!-- LANGUAGES -->
-        <div class="r-section" id="rsec-languages">
-          <div class="r-section-head">Languages <span class="r-section-edit" onclick="focusField('skills')">Edit</span></div>
-          <div class="r-langs" id="rLangs">
-            <div class="r-lang"><span class="r-lang-name">English</span><div class="r-lang-dots"><div class="r-lang-dot filled"></div><div class="r-lang-dot filled"></div><div class="r-lang-dot filled"></div><div class="r-lang-dot filled"></div><div class="r-lang-dot filled"></div></div></div>
-            <div class="r-lang"><span class="r-lang-name">Spanish</span><div class="r-lang-dots"><div class="r-lang-dot filled"></div><div class="r-lang-dot filled"></div><div class="r-lang-dot filled"></div><div class="r-lang-dot"></div><div class="r-lang-dot"></div></div></div>
-          </div>
-        </div>
+        <!-- Content will be generated by renderPreview() -->
       </div>
     </div>
 
@@ -725,6 +667,7 @@ let uploadedFile = null;
 let rebuildFile = null;
 let chosenHeading = '';
 let currentTemplate = 'executive';
+let currentLayout = 'two'; // default two-column
 
 // ── RESUME DATA MODEL ──
 let resumeData = {
@@ -824,53 +767,68 @@ function populateEditorFields() {
 // ── RENDER PREVIEW ──
 function renderPreview() {
   const d = resumeData;
-  document.getElementById('rName').textContent = d.name || 'Your Name';
-  document.getElementById('rTitle').textContent = d.title || 'Job Title';
-  document.getElementById('rPhoto').textContent = d.name ? d.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase() : '?';
-  document.getElementById('rBio').textContent = d.summary || '';
+  const pg = document.getElementById('resumePage');
 
-  const cp = [];
-  if (d.email) cp.push('<span>&#9993; '+esc(d.email)+'</span>');
-  if (d.phone) cp.push('<span>&#9742; '+esc(d.phone)+'</span>');
-  if (d.location) cp.push('<span>&#9673; '+esc(d.location)+'</span>');
-  if (d.linkedin) cp.push('<span>&#128279; '+esc(d.linkedin)+'</span>');
-  if (d.website) cp.push('<span>&#127760; '+esc(d.website)+'</span>');
-  document.getElementById('rContact').innerHTML = cp.join('');
+  // Build the two-column resume HTML
+  const initials = d.name ? d.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase() : '?';
 
-  // Experience
-  const ec = document.getElementById('rExperience');
-  if (d.experience.length) {
-    ec.innerHTML = d.experience.map(j=>'<div class="r-job"><div class="r-job-head"><span class="r-job-title">'+esc(j.title)+'</span><span class="r-job-period">'+esc(j.period)+'</span></div><div class="r-job-company">'+esc(j.company)+'</div>'+(j.bullets.length?'<ul class="r-job-bullets">'+j.bullets.map(b=>'<li>'+esc(b)+'</li>').join('')+'</ul>':'')+'</div>').join('');
-    document.getElementById('rsec-experience').style.display = '';
-  } else { ec.innerHTML = ''; document.getElementById('rsec-experience').style.display = 'none'; }
+  // Contact items for left column
+  const contactItems = [];
+  if (d.email) contactItems.push('<span><span class="r-contact-icon">&#9993;</span>'+esc(d.email)+'</span>');
+  if (d.phone) contactItems.push('<span><span class="r-contact-icon">&#9742;</span>'+esc(d.phone)+'</span>');
+  if (d.location) contactItems.push('<span><span class="r-contact-icon">&#9673;</span>'+esc(d.location)+'</span>');
+  if (d.linkedin) contactItems.push('<span><span class="r-contact-icon">&#128279;</span>'+esc(d.linkedin)+'</span>');
+  if (d.website) contactItems.push('<span><span class="r-contact-icon">&#127760;</span>'+esc(d.website)+'</span>');
 
-  // Skills
-  const sc = document.getElementById('rSkills');
-  if (d.skills.length) {
-    sc.innerHTML = d.skills.map(s=>'<div class="r-skill"><div class="r-skill-name">'+esc(s.name)+'</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:'+Math.round(s.level/5*95)+'%"></div></div></div>').join('');
-    document.getElementById('rsec-skills').style.display = '';
-  } else { sc.innerHTML = ''; document.getElementById('rsec-skills').style.display = 'none'; }
+  // Skills HTML for left column
+  const skillsHtml = d.skills.length ?
+    '<div class="r-section" id="rsec-skills"><div class="r-section-head">Skills</div><div class="r-skills" id="rSkills">' +
+    d.skills.map(s => '<div class="r-skill"><div class="r-skill-name">'+esc(s.name)+'</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:'+Math.round(s.level/5*95)+'%"></div></div></div>').join('') +
+    '</div></div>' : '';
 
-  // Education
-  const edc = document.getElementById('rEducation');
-  if (d.education.length) {
-    edc.innerHTML = d.education.map(e=>'<div class="r-edu"><div class="r-edu-degree">'+esc(e.degree)+'</div><div class="r-edu-school">'+esc(e.school)+'</div><div class="r-edu-detail">'+esc(e.detail)+'</div></div>').join('');
-    document.getElementById('rsec-education').style.display = '';
-  } else { edc.innerHTML = ''; document.getElementById('rsec-education').style.display = 'none'; }
+  // Tools HTML for left column
+  const toolsHtml = d.tools.length ?
+    '<div class="r-section" id="rsec-tools"><div class="r-section-head">Tools</div><div class="r-tags" id="rTools">' +
+    d.tools.map(t => '<span class="r-tag">'+esc(t)+'</span>').join('') +
+    '</div></div>' : '';
 
-  // Tools
-  const tc = document.getElementById('rTools');
-  if (d.tools.length) {
-    tc.innerHTML = d.tools.map(t=>'<span class="r-tag">'+esc(t)+'</span>').join('');
-    document.getElementById('rsec-tools').style.display = '';
-  } else { tc.innerHTML = ''; document.getElementById('rsec-tools').style.display = 'none'; }
+  // Languages HTML for left column
+  const langsHtml = d.languages.length ?
+    '<div class="r-section" id="rsec-languages"><div class="r-section-head">Languages</div><div class="r-langs" id="rLangs">' +
+    d.languages.map(l => '<div class="r-lang"><span class="r-lang-name">'+esc(l.name)+'</span><div class="r-lang-dots">'+Array.from({length:5},(_,i)=>'<div class="r-lang-dot'+(i<l.level?' filled':'')+'"></div>').join('')+'</div></div>').join('') +
+    '</div></div>' : '';
 
-  // Languages
-  const lc = document.getElementById('rLangs');
-  if (d.languages.length) {
-    lc.innerHTML = d.languages.map(l=>'<div class="r-lang"><span class="r-lang-name">'+esc(l.name)+'</span><div class="r-lang-dots">'+Array.from({length:5},(_,i)=>'<div class="r-lang-dot'+(i<l.level?' filled':'')+'"></div>').join('')+'</div></div>').join('');
-    document.getElementById('rsec-languages').style.display = '';
-  } else { lc.innerHTML = ''; document.getElementById('rsec-languages').style.display = 'none'; }
+  // Experience HTML for right column
+  const expHtml = d.experience.length ?
+    '<div class="r-section" id="rsec-experience"><div class="r-section-head">Experience</div><div id="rExperience">' +
+    d.experience.map(j => '<div class="r-job"><div class="r-job-head"><span class="r-job-title">'+esc(j.title)+'</span><span class="r-job-period">'+esc(j.period)+'</span></div><div class="r-job-company">'+esc(j.company)+'</div>'+(j.bullets.length?'<ul class="r-job-bullets">'+j.bullets.map(b=>'<li>'+esc(b)+'</li>').join('')+'</ul>':'')+'</div>').join('') +
+    '</div></div>' : '';
+
+  // Education HTML for right column
+  const eduHtml = d.education.length ?
+    '<div class="r-section" id="rsec-education"><div class="r-section-head">Education</div><div id="rEducation">' +
+    d.education.map(e => '<div class="r-edu"><div class="r-edu-degree">'+esc(e.degree)+'</div><div class="r-edu-school">'+esc(e.school)+'</div><div class="r-edu-detail">'+esc(e.detail)+'</div></div>').join('') +
+    '</div></div>' : '';
+
+  pg.innerHTML =
+    '<div class="r-left">' +
+      '<div class="r-photo-wrap"><div class="r-photo" id="rPhoto">'+initials+'</div></div>' +
+      '<div class="r-name" id="rName">'+(d.name||'Your Name')+'</div>' +
+      '<div class="r-title" id="rTitle">'+(d.title||'Job Title')+'</div>' +
+      (d.summary ? '<div class="r-bio" id="rBio">'+esc(d.summary)+'</div>' : '<div class="r-bio" id="rBio"></div>') +
+      '<div class="r-contact" id="rContact">'+contactItems.join('')+'</div>' +
+      skillsHtml +
+      toolsHtml +
+      langsHtml +
+    '</div>' +
+    '<div class="r-right">' +
+      expHtml +
+      eduHtml +
+    '</div>';
+
+  // Apply current layout
+  pg.classList.remove('layout-single');
+  if (currentLayout === 'single') pg.classList.add('layout-single');
 
   autoSave();
 }
@@ -954,16 +912,27 @@ function setAccentColor(el, color) {
   document.querySelectorAll('.color-swatch').forEach(s=>s.classList.remove('active'));
   el.classList.add('active');
   document.documentElement.style.setProperty('--accent', color);
-  document.querySelectorAll('.r-title,.r-job-company,.r-edu-school').forEach(e=>e.style.color=color);
+  document.querySelectorAll('.r-title,.r-job-company,.r-edu-school,.r-contact-icon').forEach(e=>e.style.color=color);
   document.querySelectorAll('.r-section-head').forEach(e=>{e.style.color=color;e.style.borderBottomColor=color;});
   document.querySelectorAll('.r-skill-fill').forEach(e=>e.style.background=color);
   document.querySelectorAll('.r-lang-dot.filled').forEach(e=>e.style.background=color);
+  document.querySelectorAll('.r-photo').forEach(e=>e.style.background='linear-gradient(135deg,'+color+','+color+'dd)');
+  document.querySelectorAll('.r-tag').forEach(e=>{e.style.background=color+'18';e.style.color=color;});
   autoSave();
 }
 function changeFont() { document.getElementById('resumePage').style.fontFamily=document.getElementById('fontSelect').value; autoSave(); }
 function changeFontSize(v) { document.getElementById('resumePage').style.fontSize=v+'px'; autoSave(); }
 function changeSpacing(v) { document.querySelectorAll('.r-section').forEach(s=>s.style.marginTop=v+'px'); autoSave(); }
-function setLayout(t) { const rp=document.getElementById('resumePage'); if(t==='two'){rp.style.columnCount='2';rp.style.columnGap='20px';}else{rp.style.columnCount='';rp.style.columnGap='';} autoSave(); }
+function setLayout(t) {
+  currentLayout = t;
+  const rp = document.getElementById('resumePage');
+  if (t === 'single') {
+    rp.classList.add('layout-single');
+  } else {
+    rp.classList.remove('layout-single');
+  }
+  autoSave();
+}
 function setTemplate(el, name) { document.querySelectorAll('.tpl-card').forEach(c=>c.classList.remove('active')); el.classList.add('active'); currentTemplate=name; autoSave(); setStatus('Template: '+name.charAt(0).toUpperCase()+name.slice(1),'ok'); }
 
 // ── FILE HANDLING ──
@@ -1035,8 +1004,64 @@ function setStatus(msg,type){const b=document.getElementById('statusBar');b.text
 let saveTimeout;
 function autoSave(){clearTimeout(saveTimeout);document.getElementById('saveStatus').textContent='Saving...';saveTimeout=setTimeout(()=>{document.getElementById('saveStatus').textContent='Saved just now';try{sessionStorage.setItem('resumeData',JSON.stringify(resumeData));}catch(e){}},800);}
 
+// ── RESUME CSS FOR PREVIEW WINDOW ──
+function getResumeCSS() {
+  return `
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { margin: 0; display: flex; justify-content: center; background: #f0f0f0; padding: 20px; font-family: 'Inter', sans-serif; }
+    .resume-page { width: 595px; min-height: 842px; background: #fff; border-radius: 4px; box-shadow: 0 4px 20px rgba(0,0,0,.15); color: #1a1a2e; font-size: 10.5px; line-height: 1.55; overflow: hidden; display: flex; flex-direction: row; }
+    .r-left { width: 200px; background: #f8f7ff; padding: 28px 18px; display: flex; flex-direction: column; flex-shrink: 0; }
+    .r-right { flex: 1; padding: 28px 24px; display: flex; flex-direction: column; min-width: 0; }
+    .r-photo-wrap { display: flex; justify-content: center; margin-bottom: 14px; }
+    .r-photo { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: #fff; flex-shrink: 0; border: 3px solid #ede9fe; }
+    .r-name { font-size: 18px; font-weight: 800; color: #1e293b; letter-spacing: -.3px; text-align: center; line-height: 1.25; }
+    .r-title { font-size: 10px; color: #6366f1; font-weight: 600; margin-top: 3px; text-align: center; text-transform: uppercase; letter-spacing: .06em; }
+    .r-bio { font-size: 9px; color: #64748b; margin-top: 8px; line-height: 1.6; text-align: center; }
+    .r-contact { display: flex; flex-direction: column; gap: 6px; margin-top: 14px; }
+    .r-contact span { display: flex; align-items: center; gap: 6px; font-size: 8.5px; color: #475569; word-break: break-all; }
+    .r-contact-icon { width: 14px; height: 14px; border-radius: 50%; background: rgba(99,102,241,.1); display: flex; align-items: center; justify-content: center; font-size: 8px; color: #6366f1; flex-shrink: 0; }
+    .r-section { margin-top: 16px; }
+    .r-section-head { font-size: 9px; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: .12em; padding-bottom: 4px; border-bottom: 1.5px solid #6366f1; margin-bottom: 8px; }
+    .r-skills { display: flex; flex-direction: column; gap: 7px; }
+    .r-skill-name { font-size: 8.5px; font-weight: 600; color: #1e293b; margin-bottom: 2px; }
+    .r-skill-bar { height: 3px; background: #e2e8f0; border-radius: 2px; overflow: hidden; }
+    .r-skill-fill { height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); border-radius: 2px; }
+    .r-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .r-tag { background: #ede9fe; color: #4f46e5; padding: 2px 8px; border-radius: 10px; font-size: 8px; font-weight: 500; }
+    .r-langs { display: flex; flex-direction: column; gap: 5px; }
+    .r-lang { display: flex; align-items: center; gap: 5px; }
+    .r-lang-name { font-size: 8.5px; font-weight: 600; color: #1e293b; min-width: 50px; }
+    .r-lang-dots { display: flex; gap: 2px; }
+    .r-lang-dot { width: 5px; height: 5px; border-radius: 50%; background: #e2e8f0; }
+    .r-lang-dot.filled { background: #6366f1; }
+    .r-job { margin-bottom: 12px; }
+    .r-job-head { display: flex; justify-content: space-between; align-items: baseline; }
+    .r-job-title { font-size: 11px; font-weight: 700; color: #1e293b; }
+    .r-job-period { font-size: 8.5px; color: #94a3b8; white-space: nowrap; margin-left: 8px; }
+    .r-job-company { font-size: 10px; color: #6366f1; font-weight: 600; }
+    .r-job-bullets { margin-top: 4px; padding-left: 14px; }
+    .r-job-bullets li { font-size: 9.5px; color: #475569; margin-bottom: 2px; line-height: 1.5; }
+    .r-edu { margin-bottom: 10px; }
+    .r-edu-degree { font-size: 11px; font-weight: 700; color: #1e293b; }
+    .r-edu-school { font-size: 10px; color: #6366f1; }
+    .r-edu-detail { font-size: 8.5px; color: #94a3b8; }
+    @media print { body { background: none; padding: 0; } .resume-page { box-shadow: none; } }
+  `;
+}
+
 // ── PREVIEW ──
-function previewResume(){const pg=document.getElementById('resumePage');if(pg.style.display==='none'){setStatus('Upload a resume first.','err');return;}const w=window.open('','_blank');w.document.write('<html><head><title>Resume Preview</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><style>body{margin:0;display:flex;justify-content:center;background:#f0f0f0;padding:20px}</style></head><body>'+pg.outerHTML+'</body></html>');w.document.close();}
+function previewResume() {
+  const pg = document.getElementById('resumePage');
+  if (pg.style.display === 'none') { setStatus('Upload a resume first.', 'err'); return; }
+  const w = window.open('', '_blank');
+  w.document.write(
+    '<!DOCTYPE html><html><head><title>Resume Preview</title>' +
+    '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">' +
+    '<style>' + getResumeCSS() + '</style>' +
+    '</head><body>' + pg.outerHTML + '</body></html>'
+  );
+  w.document.close();
+}
 
 // ── MOBILE ──
 function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('mobileOverlay').classList.toggle('show');}
@@ -1057,6 +1082,7 @@ function setupDragDrop(){
   try{const saved=sessionStorage.getItem('resumeData');if(saved){const parsed=JSON.parse(saved);if(parsed.name||parsed.experience?.length||parsed.skills?.length){Object.assign(resumeData,parsed);populateEditorFields();document.getElementById('uploadOverlay').classList.add('hidden');document.getElementById('resumePage').style.display='';document.getElementById('rpUploadSection').style.display='none';renderPreview();setStatus('Restored from session. Re-upload file for AI features.','ok');}}}catch(e){}
   try{const pu=sessionStorage.getItem('pendingUpdate'),ph=sessionStorage.getItem('pendingHeading'),rfn=sessionStorage.getItem('resumeFileName');if(pu)document.getElementById('achieveTa').value=pu;if(ph){chosenHeading=ph;document.getElementById('headingBadge').textContent=ph;document.getElementById('headingPill').classList.add('show');}if(rfn){document.getElementById('fileInfoBar').classList.remove('hidden');document.getElementById('fileInfoName').textContent=rfn;}}catch(e){}
   renderSkillEditor();
+  renderPreview();
   setupDragDrop();
 })();
 </script>
