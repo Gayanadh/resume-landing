@@ -10,7 +10,8 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { PanelRightOpen, PanelRightClose } from 'lucide-react'
 
 export function ResumeEditor() {
-  const { isDirty, setIsDirty, setSaving, setLastSaved, currentResumeId, resumeData, template, accentColor, fontFamily, fontSize, spacing } = useResumeStore()
+  const { isDirty, setIsDirty, currentResumeId, resumeData, template, accentColor, fontFamily, fontSize, spacing } = useResumeStore()
+  const { setSaving, setLastSaved } = useAppStore()
   const [rightPanelOpen, setRightPanelOpen] = useState(true)
 
   const saveResume = useCallback(async () => {

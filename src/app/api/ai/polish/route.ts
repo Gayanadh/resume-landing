@@ -10,7 +10,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Use z-ai-web-dev-sdk for AI polish
-    const { zAI } = await import('z-ai-web-dev-sdk')
+    const ZAI = (await import('z-ai-web-dev-sdk')).default
+    const zai = await ZAI.create()
     
     const systemPrompt = `You are a professional resume text polisher. Your job is to improve and optimize resume text to be more impactful, professional, and ATS-friendly.
 
@@ -22,7 +23,7 @@ Rules:
 - Only return the polished text, no explanations
 - Context: ${context || 'resume'}`
 
-    const response = await zAI.chat.completions.create({
+    const response = await zai.chat.completions.create({
       model: 'default',
       messages: [
         { role: 'system', content: systemPrompt },

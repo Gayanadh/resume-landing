@@ -56,7 +56,8 @@ export async function POST(request: NextRequest) {
 
     // Use AI to parse the extracted text into structured resume data
     try {
-      const { zAI } = await import('z-ai-web-dev-sdk')
+      const ZAI = (await import('z-ai-web-dev-sdk')).default
+      const zai = await ZAI.create()
 
       const parsePrompt = `You are a resume parser. Extract the following information from this resume text and return it as a JSON object with exactly these fields:
 
@@ -84,7 +85,7 @@ IMPORTANT: Return ONLY valid JSON, no markdown code blocks, no explanation.
 Resume text:
 ${extractedText.substring(0, 4000)}`
 
-      const response = await zAI.chat.completions.create({
+      const response = await zai.chat.completions.create({
         model: 'default',
         messages: [
           { role: 'system', content: 'You are a resume parser that returns only valid JSON. No markdown, no code blocks, just raw JSON.' },

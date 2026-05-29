@@ -10,7 +10,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Use z-ai-web-dev-sdk for AI chat
-    const { zAI } = await import('z-ai-web-dev-sdk')
+    const ZAI = (await import('z-ai-web-dev-sdk')).default
+    const zai = await ZAI.create()
     
     const systemPrompt = `You are a professional resume writing assistant called ResumePro AI. You help users:
 1. Write compelling professional summaries
@@ -23,7 +24,7 @@ export async function POST(request: NextRequest) {
 Keep your responses concise, actionable, and professional. Use specific examples when possible.
 Format your responses with bullet points when listing suggestions.`
 
-    const response = await zAI.chat.completions.create({
+    const response = await zai.chat.completions.create({
       model: 'default',
       messages: [
         { role: 'system', content: systemPrompt },

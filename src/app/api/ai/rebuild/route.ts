@@ -10,7 +10,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Use z-ai-web-dev-sdk for AI rebuild
-    const { zAI } = await import('z-ai-web-dev-sdk')
+    const ZAI = (await import('z-ai-web-dev-sdk')).default
+    const zai = await ZAI.create()
     
     const systemPrompt = `You are a professional resume rebuilder. You take existing resume data and rebuild it with ATS-optimized language, stronger action verbs, and better structure.
 
@@ -23,7 +24,7 @@ Rules:
 - Return a JSON object with the same structure as the input
 - Only return the JSON, no explanations`
 
-    const response = await zAI.chat.completions.create({
+    const response = await zai.chat.completions.create({
       model: 'default',
       messages: [
         { role: 'system', content: systemPrompt },
