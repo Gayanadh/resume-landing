@@ -163,6 +163,49 @@ a{text-decoration:none;color:inherit}
 .r-edu-school{font-size:10px;color:#6366f1}
 .r-edu-detail{font-size:8.5px;color:#94a3b8}
 
+/* ── TEMPLATE: Executive (default purple) ── */
+.resume-page.tpl-executive .r-left{background:#f8f7ff}
+.resume-page.tpl-executive .r-photo{border-color:#ede9fe}
+.resume-page.tpl-executive .r-tag{background:#ede9fe;color:#4f46e5}
+.resume-page.tpl-executive .r-contact-icon{background:rgba(99,102,241,.1);color:#6366f1}
+
+/* ── TEMPLATE: Modern (blue) ── */
+.resume-page.tpl-modern .r-left{background:#eff6ff}
+.resume-page.tpl-modern .r-photo{background:linear-gradient(135deg,#2563eb,#1d4ed8);border-color:#bfdbfe}
+.resume-page.tpl-modern .r-title{color:#2563eb}
+.resume-page.tpl-modern .r-section-head{color:#2563eb;border-bottom-color:#2563eb}
+.resume-page.tpl-modern .r-job-company{color:#2563eb}
+.resume-page.tpl-modern .r-edu-school{color:#2563eb}
+.resume-page.tpl-modern .r-skill-fill{background:linear-gradient(90deg,#2563eb,#3b82f6)}
+.resume-page.tpl-modern .r-lang-dot.filled{background:#2563eb}
+.resume-page.tpl-modern .r-tag{background:#dbeafe;color:#1d4ed8}
+.resume-page.tpl-modern .r-contact-icon{background:rgba(37,99,235,.1);color:#2563eb}
+
+/* ── TEMPLATE: Elegant (amber/gold) ── */
+.resume-page.tpl-elegant .r-left{background:#fffbeb}
+.resume-page.tpl-elegant .r-photo{background:linear-gradient(135deg,#d97706,#b45309);border-color:#fde68a}
+.resume-page.tpl-elegant .r-title{color:#d97706}
+.resume-page.tpl-elegant .r-section-head{color:#d97706;border-bottom-color:#d97706}
+.resume-page.tpl-elegant .r-job-company{color:#d97706}
+.resume-page.tpl-elegant .r-edu-school{color:#d97706}
+.resume-page.tpl-elegant .r-skill-fill{background:linear-gradient(90deg,#d97706,#f59e0b)}
+.resume-page.tpl-elegant .r-lang-dot.filled{background:#d97706}
+.resume-page.tpl-elegant .r-tag{background:#fef3c7;color:#92400e}
+.resume-page.tpl-elegant .r-contact-icon{background:rgba(217,119,6,.1);color:#d97706}
+.resume-page.tpl-elegant .r-name{font-family:Georgia,'Times New Roman',serif}
+
+/* ── TEMPLATE: Clean (teal) ── */
+.resume-page.tpl-clean .r-left{background:#f0fdfa}
+.resume-page.tpl-clean .r-photo{background:linear-gradient(135deg,#0d9488,#0f766e);border-color:#99f6e4}
+.resume-page.tpl-clean .r-title{color:#0d9488}
+.resume-page.tpl-clean .r-section-head{color:#0d9488;border-bottom-color:#0d9488}
+.resume-page.tpl-clean .r-job-company{color:#0d9488}
+.resume-page.tpl-clean .r-edu-school{color:#0d9488}
+.resume-page.tpl-clean .r-skill-fill{background:linear-gradient(90deg,#0d9488,#14b8a6)}
+.resume-page.tpl-clean .r-lang-dot.filled{background:#0d9488}
+.resume-page.tpl-clean .r-tag{background:#ccfbf1;color:#0f766e}
+.resume-page.tpl-clean .r-contact-icon{background:rgba(13,148,136,.1);color:#0d9488}
+
 /* Single column layout override */
 .resume-page.layout-single{display:block}
 .resume-page.layout-single .r-left{width:100%;background:transparent;padding:0 0 20px 0;flex-direction:row;flex-wrap:wrap;gap:16px;align-items:flex-start}
@@ -618,9 +661,10 @@ a{text-decoration:none;color:inherit}
             </div>
             <div class="rp-section-body">
               <div style="display:flex;gap:6px">
-                <button class="action-btn secondary" style="flex:1" onclick="setLayout('single')">Single Column</button>
-                <button class="action-btn secondary" style="flex:1" onclick="setLayout('two')">Two Column</button>
+                <button class="action-btn secondary layout-btn active" data-layout="two" style="flex:1" onclick="setLayout('two')">Two Column</button>
+                <button class="action-btn secondary layout-btn" data-layout="single" style="flex:1" onclick="setLayout('single')">Single Column</button>
               </div>
+              <style>.layout-btn.active{background:var(--accent)!important;color:#fff!important;border-color:var(--accent)!important}</style>
             </div>
           </div>
         </div>
@@ -635,19 +679,31 @@ a{text-decoration:none;color:inherit}
             <div class="rp-section-body">
               <div class="tpl-grid">
                 <div class="tpl-card active" onclick="setTemplate(this,'executive')">
-                  <div class="tpl-preview"><div class="tpl-preview-bar accent"></div><div class="tpl-preview-bar dark" style="width:60%"></div><div class="tpl-preview-bar" style="width:90%"></div><div class="tpl-preview-bar" style="width:70%"></div><div class="tpl-preview-bar" style="width:80%"></div></div>
+                  <div class="tpl-preview" style="display:flex;gap:3px">
+                    <div style="width:35%;background:#f8f7ff;border-radius:2px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:12px;height:12px;border-radius:50%;background:#6366f1"></div><div style="width:90%;height:2px;background:#6366f1;border-radius:1px"></div><div style="width:70%;height:1px;background:#ddd"></div><div style="width:80%;height:1px;background:#6366f1"></div><div style="width:60%;height:1px;background:#6366f1"></div></div>
+                    <div style="flex:1;display:flex;flex-direction:column;gap:2px;padding:2px"><div style="width:90%;height:2px;background:#6366f1;border-radius:1px"></div><div style="width:80%;height:1px;background:#ddd"></div><div style="width:70%;height:1px;background:#ddd"></div><div style="width:60%;height:1px;background:#ddd"></div></div>
+                  </div>
                   <div class="tpl-name">Executive</div>
                 </div>
                 <div class="tpl-card" onclick="setTemplate(this,'modern')">
-                  <div class="tpl-preview"><div class="tpl-preview-bar" style="background:#2563eb;height:4px"></div><div class="tpl-preview-bar dark" style="width:50%"></div><div class="tpl-preview-bar" style="width:85%"></div><div class="tpl-preview-bar" style="width:65%"></div></div>
+                  <div class="tpl-preview" style="display:flex;gap:3px">
+                    <div style="width:35%;background:#eff6ff;border-radius:2px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:12px;height:12px;border-radius:50%;background:#2563eb"></div><div style="width:90%;height:2px;background:#2563eb;border-radius:1px"></div><div style="width:70%;height:1px;background:#ddd"></div><div style="width:80%;height:1px;background:#2563eb"></div><div style="width:60%;height:1px;background:#2563eb"></div></div>
+                    <div style="flex:1;display:flex;flex-direction:column;gap:2px;padding:2px"><div style="width:90%;height:2px;background:#2563eb;border-radius:1px"></div><div style="width:80%;height:1px;background:#ddd"></div><div style="width:70%;height:1px;background:#ddd"></div><div style="width:60%;height:1px;background:#ddd"></div></div>
+                  </div>
                   <div class="tpl-name">Modern</div>
                 </div>
                 <div class="tpl-card" onclick="setTemplate(this,'elegant')">
-                  <div class="tpl-preview"><div class="tpl-preview-bar" style="background:#d97706;height:3px"></div><div class="tpl-preview-bar dark" style="width:55%"></div><div class="tpl-preview-bar" style="width:80%"></div><div class="tpl-preview-bar" style="width:70%"></div></div>
+                  <div class="tpl-preview" style="display:flex;gap:3px">
+                    <div style="width:35%;background:#fffbeb;border-radius:2px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:12px;height:12px;border-radius:50%;background:#d97706"></div><div style="width:90%;height:2px;background:#d97706;border-radius:1px"></div><div style="width:70%;height:1px;background:#ddd"></div><div style="width:80%;height:1px;background:#d97706"></div><div style="width:60%;height:1px;background:#d97706"></div></div>
+                    <div style="flex:1;display:flex;flex-direction:column;gap:2px;padding:2px"><div style="width:90%;height:2px;background:#d97706;border-radius:1px"></div><div style="width:80%;height:1px;background:#ddd"></div><div style="width:70%;height:1px;background:#ddd"></div><div style="width:60%;height:1px;background:#ddd"></div></div>
+                  </div>
                   <div class="tpl-name">Elegant</div>
                 </div>
                 <div class="tpl-card" onclick="setTemplate(this,'clean')">
-                  <div class="tpl-preview"><div class="tpl-preview-bar" style="background:#0d9488;height:5px"></div><div class="tpl-preview-bar dark" style="width:45%"></div><div class="tpl-preview-bar" style="width:90%"></div><div class="tpl-preview-bar" style="width:75%"></div></div>
+                  <div class="tpl-preview" style="display:flex;gap:3px">
+                    <div style="width:35%;background:#f0fdfa;border-radius:2px;padding:3px 2px;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:12px;height:12px;border-radius:50%;background:#0d9488"></div><div style="width:90%;height:2px;background:#0d9488;border-radius:1px"></div><div style="width:70%;height:1px;background:#ddd"></div><div style="width:80%;height:1px;background:#0d9488"></div><div style="width:60%;height:1px;background:#0d9488"></div></div>
+                    <div style="flex:1;display:flex;flex-direction:column;gap:2px;padding:2px"><div style="width:90%;height:2px;background:#0d9488;border-radius:1px"></div><div style="width:80%;height:1px;background:#ddd"></div><div style="width:70%;height:1px;background:#ddd"></div><div style="width:60%;height:1px;background:#ddd"></div></div>
+                  </div>
                   <div class="tpl-name">Clean</div>
                 </div>
               </div>
@@ -668,6 +724,12 @@ let rebuildFile = null;
 let chosenHeading = '';
 let currentTemplate = 'executive';
 let currentLayout = 'two'; // default two-column
+
+// Map frontend template names to backend template names
+function getBackendTemplateName(name) {
+  const map = { 'executive': 'google', 'modern': 'apple', 'elegant': 'apple', 'clean': 'amazon' };
+  return map[name] || 'google';
+}
 
 // ── RESUME DATA MODEL ──
 let resumeData = {
@@ -830,6 +892,10 @@ function renderPreview() {
   pg.classList.remove('layout-single');
   if (currentLayout === 'single') pg.classList.add('layout-single');
 
+  // Apply current template
+  pg.classList.remove('tpl-executive','tpl-modern','tpl-elegant','tpl-clean');
+  pg.classList.add('tpl-' + currentTemplate);
+
   autoSave();
 }
 
@@ -931,9 +997,25 @@ function setLayout(t) {
   } else {
     rp.classList.remove('layout-single');
   }
+  // Update active button state
+  document.querySelectorAll('.layout-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.querySelector('.layout-btn[data-layout="'+t+'"]');
+  if (btn) btn.classList.add('active');
   autoSave();
 }
-function setTemplate(el, name) { document.querySelectorAll('.tpl-card').forEach(c=>c.classList.remove('active')); el.classList.add('active'); currentTemplate=name; autoSave(); setStatus('Template: '+name.charAt(0).toUpperCase()+name.slice(1),'ok'); }
+function setTemplate(el, name) {
+  document.querySelectorAll('.tpl-card').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  currentTemplate = name;
+  // Apply template class to resume page
+  const rp = document.getElementById('resumePage');
+  rp.classList.remove('tpl-executive','tpl-modern','tpl-elegant','tpl-clean');
+  rp.classList.add('tpl-' + name);
+  // Re-render preview to apply template styles
+  renderPreview();
+  autoSave();
+  setStatus('Template: ' + name.charAt(0).toUpperCase() + name.slice(1), 'ok');
+}
 
 // ── FILE HANDLING ──
 function handleRebuildFile(inp) {
@@ -949,7 +1031,7 @@ async function doPolish() {
   if(!uploadedFile){setStatus('Upload a resume first so AI can classify.','err');return;}
   btn.disabled=true;btn.innerHTML='<span class="spinner"></span>';
   setStatus('AI is polishing...','loading');
-  const form=new FormData();form.append('resume',uploadedFile);form.append('text',input.value);form.append('template',currentTemplate);
+  const form=new FormData();form.append('resume',uploadedFile);form.append('text',input.value);form.append('template',getBackendTemplateName(currentTemplate));
   try{const res=await fetch(API+'/polish',{method:'POST',body:form});const data=await res.json();
     input.value=data.polished_text;chosenHeading=data.heading||'Achievements';
     document.getElementById('headingBadge').textContent=chosenHeading;document.getElementById('headingPill').classList.add('show');
@@ -964,7 +1046,7 @@ async function doInject() {
   const updates=document.getElementById('achieveTa').value;
   if(!updates.trim()){setStatus('Write an achievement to inject first.','err');return;}
   setStatus('Injecting achievement...','loading');
-  const form=new FormData();form.append('resume',uploadedFile);form.append('updates',updates);form.append('template',currentTemplate);form.append('format','docx');
+  const form=new FormData();form.append('resume',uploadedFile);form.append('updates',updates);form.append('template',getBackendTemplateName(currentTemplate));form.append('format','docx');
   if(chosenHeading)form.append('heading',chosenHeading);
   try{const res=await fetch(API+'/upgrade',{method:'POST',body:form});
     if(res.ok){const blob=await res.blob();const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Optimized_Resume.docx';document.body.appendChild(a);a.click();document.body.removeChild(a);setStatus('Done! Injected under "'+(chosenHeading||'Achievements')+'".','ok');}
@@ -976,7 +1058,7 @@ async function doInject() {
 async function download(format) {
   if(!uploadedFile){setStatus('Upload a resume first for full export.','err');return;}
   setStatus('Generating '+format.toUpperCase()+'...','loading');
-  const form=new FormData();form.append('resume',uploadedFile);form.append('updates',document.getElementById('achieveTa').value);form.append('template',currentTemplate);form.append('format',format);
+  const form=new FormData();form.append('resume',uploadedFile);form.append('updates',document.getElementById('achieveTa').value);form.append('template',getBackendTemplateName(currentTemplate));form.append('format',format);
   if(chosenHeading)form.append('heading',chosenHeading);
   try{const res=await fetch(API+'/upgrade',{method:'POST',body:form});
     if(res.ok){const blob=await res.blob();const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Optimized_Resume.'+format;document.body.appendChild(a);a.click();document.body.removeChild(a);setStatus(format.toUpperCase()+' downloaded!','ok');}
@@ -1045,6 +1127,66 @@ function getResumeCSS() {
     .r-edu-degree { font-size: 11px; font-weight: 700; color: #1e293b; }
     .r-edu-school { font-size: 10px; color: #6366f1; }
     .r-edu-detail { font-size: 8.5px; color: #94a3b8; }
+    /* Template: Executive */
+    .resume-page.tpl-executive .r-left { background: #f8f7ff; }
+    .resume-page.tpl-executive .r-photo { border-color: #ede9fe; }
+    .resume-page.tpl-executive .r-tag { background: #ede9fe; color: #4f46e5; }
+    .resume-page.tpl-executive .r-contact-icon { background: rgba(99,102,241,.1); color: #6366f1; }
+    /* Template: Modern */
+    .resume-page.tpl-modern .r-left { background: #eff6ff; }
+    .resume-page.tpl-modern .r-photo { background: linear-gradient(135deg,#2563eb,#1d4ed8); border-color: #bfdbfe; }
+    .resume-page.tpl-modern .r-title { color: #2563eb; }
+    .resume-page.tpl-modern .r-section-head { color: #2563eb; border-bottom-color: #2563eb; }
+    .resume-page.tpl-modern .r-job-company { color: #2563eb; }
+    .resume-page.tpl-modern .r-edu-school { color: #2563eb; }
+    .resume-page.tpl-modern .r-skill-fill { background: linear-gradient(90deg,#2563eb,#3b82f6); }
+    .resume-page.tpl-modern .r-lang-dot.filled { background: #2563eb; }
+    .resume-page.tpl-modern .r-tag { background: #dbeafe; color: #1d4ed8; }
+    .resume-page.tpl-modern .r-contact-icon { background: rgba(37,99,235,.1); color: #2563eb; }
+    /* Template: Elegant */
+    .resume-page.tpl-elegant .r-left { background: #fffbeb; }
+    .resume-page.tpl-elegant .r-photo { background: linear-gradient(135deg,#d97706,#b45309); border-color: #fde68a; }
+    .resume-page.tpl-elegant .r-title { color: #d97706; }
+    .resume-page.tpl-elegant .r-section-head { color: #d97706; border-bottom-color: #d97706; }
+    .resume-page.tpl-elegant .r-job-company { color: #d97706; }
+    .resume-page.tpl-elegant .r-edu-school { color: #d97706; }
+    .resume-page.tpl-elegant .r-skill-fill { background: linear-gradient(90deg,#d97706,#f59e0b); }
+    .resume-page.tpl-elegant .r-lang-dot.filled { background: #d97706; }
+    .resume-page.tpl-elegant .r-tag { background: #fef3c7; color: #92400e; }
+    .resume-page.tpl-elegant .r-contact-icon { background: rgba(217,119,6,.1); color: #d97706; }
+    .resume-page.tpl-elegant .r-name { font-family: Georgia,'Times New Roman',serif; }
+    /* Template: Clean */
+    .resume-page.tpl-clean .r-left { background: #f0fdfa; }
+    .resume-page.tpl-clean .r-photo { background: linear-gradient(135deg,#0d9488,#0f766e); border-color: #99f6e4; }
+    .resume-page.tpl-clean .r-title { color: #0d9488; }
+    .resume-page.tpl-clean .r-section-head { color: #0d9488; border-bottom-color: #0d9488; }
+    .resume-page.tpl-clean .r-job-company { color: #0d9488; }
+    .resume-page.tpl-clean .r-edu-school { color: #0d9488; }
+    .resume-page.tpl-clean .r-skill-fill { background: linear-gradient(90deg,#0d9488,#14b8a6); }
+    .resume-page.tpl-clean .r-lang-dot.filled { background: #0d9488; }
+    .resume-page.tpl-clean .r-tag { background: #ccfbf1; color: #0f766e; }
+    .resume-page.tpl-clean .r-contact-icon { background: rgba(13,148,136,.1); color: #0d9488; }
+    /* Single column */
+    .resume-page.layout-single { display: block; }
+    .resume-page.layout-single .r-left { width: 100%; background: transparent; padding: 0 0 20px 0; flex-direction: row; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+    .resume-page.layout-single .r-photo-wrap { justify-content: flex-start; margin-bottom: 0; }
+    .resume-page.layout-single .r-photo { width: 64px; height: 64px; font-size: 22px; border: none; }
+    .resume-page.layout-single .r-name { text-align: left; font-size: 22px; }
+    .resume-page.layout-single .r-title { text-align: left; font-size: 12px; }
+    .resume-page.layout-single .r-bio { text-align: left; font-size: 10px; }
+    .resume-page.layout-single .r-contact { flex-direction: row; flex-wrap: wrap; gap: 8px; margin-top: 8px; width: 100%; }
+    .resume-page.layout-single .r-contact-icon { display: none; }
+    .resume-page.layout-single .r-section { margin-top: 18px; width: 100%; }
+    .resume-page.layout-single .r-skills { flex-direction: row; flex-wrap: wrap; gap: 8px; }
+    .resume-page.layout-single .r-skill { flex: 1; min-width: 140px; }
+    .resume-page.layout-single .r-skill-name { font-size: 10px; }
+    .resume-page.layout-single .r-skill-bar { height: 4px; }
+    .resume-page.layout-single .r-tags { gap: 5px; }
+    .resume-page.layout-single .r-tag { background: #f1f5f9; color: #475569; padding: 3px 10px; border-radius: 12px; font-size: 9px; }
+    .resume-page.layout-single .r-langs { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+    .resume-page.layout-single .r-lang-name { font-size: 10px; min-width: auto; }
+    .resume-page.layout-single .r-lang-dot { width: 6px; height: 6px; }
+    .resume-page.layout-single .r-section-head { font-size: 11px; padding-bottom: 5px; border-bottom-width: 2px; }
     @media print { body { background: none; padding: 0; } .resume-page { box-shadow: none; } }
   `;
 }
