@@ -129,10 +129,13 @@
   margin: 0 auto;
   position: relative;
   box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .resume-page-wrapper {
   transform-origin: top center;
+  min-height: 400px;
 }
 
 @media (max-width: 900px) {
