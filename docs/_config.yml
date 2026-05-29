@@ -1,3 +1,5 @@
 theme: null
 plugins: []
 markdown: kramdown
+include:
+  - .nojekyll
