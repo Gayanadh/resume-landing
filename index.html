@@ -505,28 +505,8 @@ async function doRebuild(){
 }
 
 function openArchitect() {
-  const file = document.getElementById('resumeUpload').files[0];
-  const updates = document.getElementById('updates').value;
-  const heading = chosenHeading;
-  const name = 'Your Resume';
-  const ats = document.getElementById('scoreText').innerText.replace('%','');
-  // Pass file through sessionStorage flag + URL params
-  const params = new URLSearchParams({ ats, name, title: document.getElementById('template').options[document.getElementById('template').selectedIndex].text });
-  // Store file for architect page
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      try {
-        sessionStorage.setItem('resumeFileName', file.name);
-        sessionStorage.setItem('pendingUpdate', updates);
-        sessionStorage.setItem('pendingHeading', heading);
-      } catch(ex) {}
-      window.location.href = 'career_architect.html?' + params.toString();
-    };
-    reader.readAsDataURL(file);
-  } else {
-    window.location.href = 'career_architect.html?' + params.toString();
-  }
+  // Redirect to the ResumePro app on Vercel
+  window.open('https://html-site-kappa.vercel.app', '_blank');
 }
 
 </script>
