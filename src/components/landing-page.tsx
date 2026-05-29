@@ -75,7 +75,7 @@ export function LandingPage() {
       {/* Header */}
       <header className="relative z-10 flex items-center justify-between px-6 md:px-12 py-5 border-b border-white/18 bg-white/7 backdrop-blur-xl">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#f5a623] to-[#e67e22] flex items-center justify-center shadow-lg shadow-[#f5a623]/25">
+          <div className="w-10 h-10 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center">
             <span className="text-white font-extrabold text-sm">GK</span>
           </div>
           <span className="text-xl font-bold tracking-tight">Resume Hub</span>
@@ -86,7 +86,7 @@ export function LandingPage() {
           </span>
           <a
             href="/app"
-            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#f5a623] to-[#e67e22] text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-lg shadow-[#f5a623]/25"
+            className="px-5 py-2.5 rounded-xl bg-white/15 border border-white/25 text-white text-sm font-semibold hover:bg-white/25 transition-colors"
           >
             Open Editor
           </a>
@@ -105,12 +105,12 @@ export function LandingPage() {
               <span className="text-white">
                 Resume
               </span>{' '}
-              <span className="bg-gradient-to-r from-[#f5a623] via-[#e67e22] to-[#f5a623] bg-clip-text text-transparent">
+              <span className="text-white">
                 Hub
               </span>
             </h1>
             <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-lg">
-              Upgrade your career in just a few clicks. AI-powered resume editing, professional templates, and smart ATS optimization — all in one place.
+              Upgrade your career in just a few clicks!
             </p>
 
             {/* Stats */}
@@ -279,7 +279,7 @@ export function LandingPage() {
       <footer className="relative z-10 border-t border-white/10 bg-white/5 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 md:px-12 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#f5a623] to-[#e67e22] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-white/15 border border-white/25 flex items-center justify-center">
               <span className="text-white font-bold text-xs">GK</span>
             </div>
             <span className="font-semibold text-sm text-white/60">GK Resume Hub</span>
