@@ -1,0 +1,18 @@
+{
+  "code": 200,
+  "data": {
+    "description": "",
+    "html": "<html><head><meta name=\"color-scheme\" content=\"light dark\"></head><body><pre style=\"word-wrap: break-word; white-space: pre-wrap;\">services:\n  - type: web\n    name: gk-resume-hub\n    runtime: docker\n    plan: free\n    dockerfilePath: ./Dockerfile\n    envVars:\n      - key: PORT\n        value: 10000\n</pre></body></html>",
+    "title": "",
+    "url": "https://raw.githubusercontent.com/Gayanadh/HTML-site/main/render.yaml",
+    "usage": {
+      "tokens": 96
+    }
+  },
+  "meta": {
+    "usage": {
+      "tokens": 96
+    }
+  },
+  "status": 20000
+}

@@ -1,0 +1,18 @@
+{
+  "code": 200,
+  "data": {
+    "description": "",
+    "html": "<html><head><meta name=\"color-scheme\" content=\"light dark\"></head><body><pre style=\"word-wrap: break-word; white-space: pre-wrap;\">flask\nflask-cors\npython-docx\nPyMuPDF\nlxml\ngunicorn\ngroq\n</pre></body></html>",
+    "title": "",
+    "url": "https://raw.githubusercontent.com/Gayanadh/HTML-site/main/requirements.txt",
+    "usage": {
+      "tokens": 67
+    }
+  },
+  "meta": {
+    "usage": {
+      "tokens": 67
+    }
+  },
+  "status": 20000
+}

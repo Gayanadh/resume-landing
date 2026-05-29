@@ -1,0 +1,18 @@
+{
+  "code": 200,
+  "data": {
+    "description": "",
+    "html": "<html><head><meta name=\"color-scheme\" content=\"light dark\"></head><body><pre style=\"word-wrap: break-word; white-space: pre-wrap;\">FROM python:3.11-slim\n\n# Install LibreOffice + required system libs (slim layer)\nRUN apt-get update && apt-get install -y --no-install-recommends \\\n    libreoffice \\\n    libreoffice-writer \\\n    fonts-liberation \\\n    fonts-dejavu \\\n    && apt-get clean \\\n    && rm -rf /var/lib/apt/lists/*\n\nWORKDIR /app\n\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\n\nCOPY . .\n\n# Render injects $PORT at runtime\nCMD gunicorn app:app --bind 0.0.0.0:$PORT --timeout 120 --workers 1\n</pre></body></html>",
+    "title": "",
+    "url": "https://raw.githubusercontent.com/Gayanadh/HTML-site/main/Dockerfile",
+    "usage": {
+      "tokens": 179
+    }
+  },
+  "meta": {
+    "usage": {
+      "tokens": 179
+    }
+  },
+  "status": 20000
+}
