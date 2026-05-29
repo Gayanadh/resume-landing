@@ -315,6 +315,89 @@ def build_docx_from_json(data):
 # ─────────────────────────────────────────────────────────────
 #  ROUTES
 # ─────────────────────────────────────────────────────────────
+@app.route("/parse", methods=["POST"])
+def parse_resume():
+    """Extract and parse resume content, return structured JSON for the frontend editor."""
+    try:
+        file = request.files.get("resume")
+        if not file:
+            return jsonify({"error": "No file uploaded"}), 400
+
+        file_bytes = file.read()
+        fn = file.filename.lower()
+
+        # Extract raw text
+        if fn.endswith(".pdf"):
+            resume_text = extract_text_pdf(file_bytes)
+        elif fn.endswith(".docx"):
+            resume_text = extract_text_docx(file_bytes)
+        else:
+            return jsonify({"error": "Unsupported file type. Please upload .pdf or .docx"}), 400
+
+        if not resume_text.strip():
+            return jsonify({"error": "Could not extract text from the file. It may be image-based."}), 400
+
+        # Use Groq to parse into structured JSON
+        if groq_client:
+            r = groq_client.chat.completions.create(
+                model="llama-3.1-8b-instant",
+                messages=[{
+                    "role": "system",
+                    "content": """You are a resume parser. Extract ALL information from this resume text and return it as structured JSON.
+Return ONLY valid JSON with this exact structure:
+{
+  "name": "Full Name",
+  "title": "Job Title or current role",
+  "email": "email@example.com",
+  "phone": "+1 234 567 890",
+  "location": "City, Country",
+  "linkedin": "linkedin URL or empty string",
+  "website": "website URL or empty string",
+  "summary": "The professional summary or objective text",
+  "skills": [{"name": "Skill Name", "level": 85}],
+  "experience": [{"title": "Job Title", "company": "Company", "period": "2020 - Present", "bullets": ["achievement 1", "achievement 2"]}],
+  "education": [{"degree": "Degree Name", "school": "School Name", "detail": "2015 - 2019, Honors"}],
+  "tools": ["Tool1", "Tool2"],
+  "languages": [{"name": "English", "level": 5}, {"name": "Spanish", "level": 3}]
+}
+Rules:
+- Extract EVERY piece of information you find
+- For skills level, estimate 50-95 based on how prominently they're featured
+- For language level, use 1-5 scale (5=native)
+- Keep all bullet points exactly as written
+- If a field is not found, use empty string for strings, empty array for arrays
+- Return ONLY the JSON, no other text"""
+                }, {
+                    "role": "user",
+                    "content": f"Parse this resume:\n{resume_text}"
+                }],
+                max_tokens=3000, temperature=0.1
+            )
+            raw = r.choices[0].message.content.strip()
+            if raw.startswith("```"):
+                raw = raw.split("```")[1]
+                if raw.startswith("json"):
+                    raw = raw[4:]
+            try:
+                data = json.loads(raw.strip())
+            except:
+                data = {"name": "", "title": "", "email": "", "phone": "", "location": "",
+                        "linkedin": "", "website": "", "summary": resume_text[:500],
+                        "skills": [], "experience": [], "education": [], "tools": [], "languages": []}
+        else:
+            # No Groq - return raw text
+            data = {"name": "", "title": "", "email": "", "phone": "", "location": "",
+                    "linkedin": "", "website": "", "summary": resume_text[:500],
+                    "skills": [], "experience": [], "education": [], "tools": [], "languages": []}
+
+        data["raw_text"] = resume_text
+        data["filename"] = file.filename
+        return jsonify(data)
+
+    except Exception as e:
+        import traceback; traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
 @app.route("/polish", methods=["POST"])
 def polish():
     if not groq_client:
