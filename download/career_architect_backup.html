@@ -9,7 +9,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --sidebar-w:220px;
-  --right-w:320px;
+  --right-w:300px;
   --bg-primary:#0f1117;
   --bg-sidebar:#1a1d2e;
   --bg-card:#1e2235;
@@ -94,18 +94,6 @@ a{text-decoration:none;color:inherit}
 .preview-area{flex:1;display:flex;align-items:center;justify-content:center;overflow:auto;padding:24px;background:var(--bg-primary);position:relative}
 .preview-area::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(108,92,231,.04),transparent 60%),radial-gradient(circle at 70% 60%,rgba(168,85,247,.03),transparent 50%);pointer-events:none}
 
-/* ── UPLOAD OVERLAY ── */
-.upload-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;background:rgba(15,17,23,.85);backdrop-filter:blur(8px);transition:opacity .3s}
-.upload-overlay.hidden{opacity:0;pointer-events:none}
-.upload-zone{width:420px;padding:48px 32px;border:2px dashed rgba(108,92,231,.5);border-radius:16px;text-align:center;background:rgba(108,92,231,.06);transition:all .2s;cursor:pointer}
-.upload-zone:hover,.upload-zone.dragover{border-color:var(--accent);background:rgba(108,92,231,.12);transform:scale(1.01)}
-.upload-zone-icon{font-size:48px;margin-bottom:16px}
-.upload-zone h3{font-size:18px;font-weight:700;margin-bottom:8px;color:#fff}
-.upload-zone p{font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:16px}
-.upload-zone-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 24px;background:var(--purple-grad);color:#fff;border-radius:8px;font-size:13px;font-weight:700;transition:opacity .2s}
-.upload-zone-btn:hover{opacity:.88}
-.upload-zone-hint{font-size:10px;color:var(--text-muted);margin-top:12px}
-
 .resume-page{width:595px;min-height:842px;background:#fff;border-radius:4px;box-shadow:0 8px 40px rgba(0,0,0,.5);position:relative;z-index:1;padding:40px;color:#1a1a2e;font-size:10.5px;line-height:1.55;overflow:hidden}
 
 /* Resume inner styles */
@@ -189,21 +177,6 @@ a{text-decoration:none;color:inherit}
 .rp-add-btn{display:flex;align-items:center;gap:5px;padding:6px 10px;background:none;border:1px dashed var(--border2);border-radius:6px;color:var(--accent);font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;width:100%;justify-content:center}
 .rp-add-btn:hover{border-color:var(--accent);background:var(--accent-glow)}
 
-/* Experience editor */
-.exp-block{background:var(--bg-card);border:1px solid var(--border2);border-radius:8px;padding:10px;margin-bottom:8px;position:relative}
-.exp-block-header{display:flex;gap:6px;margin-bottom:6px}
-.exp-block-remove{position:absolute;top:8px;right:8px;background:none;color:var(--text-muted);font-size:14px;transition:color .15s}
-.exp-block-remove:hover{color:var(--red)}
-.exp-bullet-row{display:flex;align-items:flex-start;gap:4px;margin-bottom:4px}
-.exp-bullet-row .rp-input{flex:1;font-size:11px;padding:6px 8px}
-.bullet-remove{background:none;color:var(--text-muted);font-size:12px;padding:6px 2px;transition:color .15s;flex-shrink:0}
-.bullet-remove:hover{color:var(--red)}
-
-/* Education editor */
-.edu-block{background:var(--bg-card);border:1px solid var(--border2);border-radius:8px;padding:10px;margin-bottom:8px;position:relative}
-.edu-block-remove{position:absolute;top:8px;right:8px;background:none;color:var(--text-muted);font-size:14px;transition:color .15s}
-.edu-block-remove:hover{color:var(--red)}
-
 /* Polish / Inject area */
 .polish-row{display:flex;gap:6px;align-items:flex-start}
 .polish-row .rp-textarea{flex:1}
@@ -267,13 +240,6 @@ a{text-decoration:none;color:inherit}
 .tpl-preview-bar.accent{background:var(--accent)}
 .tpl-name{font-size:10px;font-weight:600;color:var(--text-secondary)}
 
-/* ── FILE INFO BAR ── */
-.file-info{display:flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(16,185,129,.08);border-bottom:1px solid rgba(16,185,129,.2);font-size:11px;color:var(--green);flex-shrink:0}
-.file-info.hidden{display:none}
-.file-info-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.file-info-change{color:var(--accent);cursor:pointer;font-weight:600;text-decoration:underline;background:none;font-size:11px}
-.file-info-change:hover{color:var(--accent-hover)}
-
 /* ── RESPONSIVE ── */
 @media(max-width:1100px){
   :root{--sidebar-w:60px;--right-w:260px}
@@ -296,10 +262,6 @@ a{text-decoration:none;color:inherit}
 .mobile-edit-toggle,.mobile-menu-toggle{display:none;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:var(--bg-card);color:var(--text-secondary);border:1px solid var(--border2);font-size:16px}
 .mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:150}
 .mobile-overlay.show{display:block}
-
-/* ── LOADING SPINNER ── */
-.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
 
 /* ── SCROLLBAR GLOBAL ── */
 ::-webkit-scrollbar{width:4px;height:4px}
@@ -357,7 +319,7 @@ a{text-decoration:none;color:inherit}
   </div>
 
   <div class="sb-user">
-    <div class="sb-avatar" id="sbAvatar">GK</div>
+    <div class="sb-avatar">GK</div>
     <div class="sb-user-info">
       <div class="sb-user-name" id="sbUserName">Your Name</div>
       <div class="sb-user-email">gk@resumehub.com</div>
@@ -382,7 +344,7 @@ a{text-decoration:none;color:inherit}
     <div class="top-title">My Resume</div>
     <div class="top-status">
       <div class="top-status-dot"></div>
-      <span id="saveStatus">Ready</span>
+      <span id="saveStatus">Saved just now</span>
     </div>
     <div class="top-spacer"></div>
     <div class="top-btns">
@@ -402,79 +364,102 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
 
-  <!-- FILE INFO BAR -->
-  <div class="file-info hidden" id="fileInfoBar">
-    <span>&#128196;</span>
-    <span class="file-info-name" id="fileInfoName"></span>
-    <button class="file-info-change" onclick="triggerUpload()">Change File</button>
-  </div>
-
   <!-- CONTENT AREA -->
   <div class="content">
 
     <!-- RESUME PREVIEW -->
     <div class="preview-area" id="previewArea">
-
-      <!-- UPLOAD OVERLAY - shown when no resume loaded -->
-      <div class="upload-overlay" id="uploadOverlay">
-        <div class="upload-zone" id="uploadZone" onclick="triggerUpload()">
-          <div class="upload-zone-icon">&#128196;</div>
-          <h3>Upload Your Resume</h3>
-          <p>Drag & drop your resume file here, or click to browse.<br>Supported formats: PDF, DOCX</p>
-          <button class="upload-zone-btn">&#128228; Choose File</button>
-          <div class="upload-zone-hint">Your resume will be parsed by AI and displayed for editing</div>
-        </div>
-      </div>
-
-      <!-- HIDDEN FILE INPUT -->
-      <input type="file" class="hidden-input" id="mainFileInput" accept=".pdf,.docx" onchange="handleFileSelect(this)">
-
-      <div class="resume-page" id="resumePage" style="display:none">
+      <div class="resume-page" id="resumePage">
         <!-- PROFILE HEADER -->
         <div class="r-header">
-          <div class="r-photo" id="rPhoto">?</div>
+          <div class="r-photo" id="rPhoto">GK</div>
           <div style="flex:1">
             <div class="r-name" id="rName">Your Name</div>
             <div class="r-title" id="rTitle">Job Title</div>
-            <div class="r-bio" id="rBio"></div>
-            <div class="r-contact" id="rContact"></div>
+            <div class="r-bio" id="rBio">A dedicated professional with a passion for delivering high-quality results and driving team success.</div>
+            <div class="r-contact">
+              <span>&#9993; email@example.com</span>
+              <span>&#9742; +1 234 567 890</span>
+              <span>&#9673; City, Country</span>
+              <span>&#128279; linkedin.com/in/you</span>
+              <span>&#127760; yoursite.com</span>
+            </div>
           </div>
         </div>
 
         <!-- PROFESSIONAL SUMMARY -->
         <div class="r-section" id="rsec-summary">
           <div class="r-section-head">Professional Summary <span class="r-section-edit" onclick="focusField('summary')">Edit</span></div>
-          <div id="rSummary" style="font-size:10px;color:#475569;line-height:1.6"></div>
+          <div id="rSummary" style="font-size:10px;color:#475569;line-height:1.6">Product designer with 6+ years of experience creating user-centered digital products. Skilled in UX research, interaction design, and design systems. Proven ability to collaborate with cross-functional teams and deliver impactful solutions.</div>
         </div>
 
         <!-- EXPERIENCE -->
         <div class="r-section" id="rsec-experience">
           <div class="r-section-head">Experience <span class="r-section-edit" onclick="focusField('experience')">Edit</span></div>
-          <div id="rExperience"></div>
+          <div class="r-job">
+            <div class="r-job-head"><span class="r-job-title">Senior Product Designer</span><span class="r-job-period">2021 - Present</span></div>
+            <div class="r-job-company">TechCorp Inc.</div>
+            <ul class="r-job-bullets">
+              <li>Led redesign of core product, improving user engagement by 35%</li>
+              <li>Established design system used across 12 product teams</li>
+              <li>Mentored 4 junior designers and conducted design reviews</li>
+            </ul>
+          </div>
+          <div class="r-job">
+            <div class="r-job-head"><span class="r-job-title">UX Designer</span><span class="r-job-period">2019 - 2021</span></div>
+            <div class="r-job-company">StartupXYZ</div>
+            <ul class="r-job-bullets">
+              <li>Designed end-to-end user flows for mobile and web apps</li>
+              <li>Conducted user research and usability testing sessions</li>
+              <li>Collaborated with engineering to ship features on schedule</li>
+            </ul>
+          </div>
         </div>
 
         <!-- SKILLS -->
         <div class="r-section" id="rsec-skills">
           <div class="r-section-head">Skills <span class="r-section-edit" onclick="focusField('skills')">Edit</span></div>
-          <div class="r-skills" id="rSkills"></div>
+          <div class="r-skills" id="rSkills">
+            <div class="r-skill"><div class="r-skill-name">UX/UI Design</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:95%"></div></div></div>
+            <div class="r-skill"><div class="r-skill-name">Design Systems</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:90%"></div></div></div>
+            <div class="r-skill"><div class="r-skill-name">User Research</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:85%"></div></div></div>
+            <div class="r-skill"><div class="r-skill-name">Prototyping</div><div class="r-skill-bar"><div class="r-skill-fill" style="width:88%"></div></div></div>
+          </div>
         </div>
 
         <!-- EDUCATION -->
         <div class="r-section" id="rsec-education">
           <div class="r-section-head">Education <span class="r-section-edit" onclick="focusField('education')">Edit</span></div>
-          <div id="rEducation"></div>
+          <div class="r-edu">
+            <div class="r-edu-degree">B.Sc. in Computer Science</div>
+            <div class="r-edu-school">University of Technology</div>
+            <div class="r-edu-detail">2015 - 2019 &middot; Graduated with Honors</div>
+          </div>
         </div>
 
         <!-- TOOLS -->
-        <div class="r-section" id="rsec-tools" style="display:none">
+        <div class="r-section" id="rsec-tools">
           <div class="r-section-head">Tools <span class="r-section-edit" onclick="focusField('tools')">Edit</span></div>
-          <div class="r-tags" id="rTools"></div>
+          <div class="r-tags" id="rTools">
+            <span class="r-tag">Figma</span>
+            <span class="r-tag">Sketch</span>
+            <span class="r-tag">Adobe XD</span>
+            <span class="r-tag">InVision</span>
+            <span class="r-tag">Miro</span>
+            <span class="r-tag">Notion</span>
+            <span class="r-tag">Jira</span>
+            <span class="r-tag">HTML/CSS</span>
+          </div>
         </div>
 
         <!-- LANGUAGES -->
-        <div class="r-section" id="rsec-languages" style="display:none">
+        <div class="r-section" id="rsec-languages">
           <div class="r-section-head">Languages <span class="r-section-edit" onclick="focusField('languages')">Edit</span></div>
-          <div class="r-langs" id="rLangs"></div>
+          <div class="r-langs" id="rLangs">
+            <div class="r-lang"><span class="r-lang-name">English</span><div class="r-lang-dots"><div class="r-lang-dot filled"></div><div class="r-lang-dot filled"></div><div class="r-lang-dot filled"></div><div class="r-lang-dot filled"></div><div class="r-lang-dot filled"></div></div></div>
+            <div class="r-lang"><span class="r-lang-name">Spanish</span><div class="r-lang-dots"><div class="r-lang-dot filled"></div><div class="r-lang-dot filled"></div><div class="r-lang-dot filled"></div><div class="r-lang-dot"></div><div class="r-lang-dot"></div></div></div>
+            <div class="r-lang"><span class="r-lang-name">French</span><div class="r-lang-dots"><div class="r-lang-dot filled"></div><div class="r-lang-dot filled"></div><div class="r-lang-dot"></div><div class="r-lang-dot"></div><div class="r-lang-dot"></div></div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -490,13 +475,6 @@ a{text-decoration:none;color:inherit}
       <div class="rp-content">
         <!-- ════════ CONTENT TAB ════════ -->
         <div class="tab-panel active" id="tab-content">
-
-          <!-- Upload Section (visible when no file) -->
-          <div class="rp-section" id="rpUploadSection">
-            <div class="rp-label">Resume File</div>
-            <button class="action-btn primary" onclick="triggerUpload()" style="margin-bottom:8px">&#128228; Upload Resume</button>
-            <p style="font-size:10px;color:var(--text-muted);line-height:1.5">Upload a PDF or DOCX file. AI will parse your resume so you can edit every section.</p>
-          </div>
 
           <!-- Personal Info -->
           <div class="rp-section">
@@ -517,28 +495,47 @@ a{text-decoration:none;color:inherit}
           <!-- Summary -->
           <div class="rp-section">
             <div class="rp-label">Professional Summary</div>
-            <textarea class="rp-textarea" id="f-summary" rows="4" placeholder="Write your professional summary..." oninput="updateResume()"></textarea>
-          </div>
-
-          <!-- Experience -->
-          <div class="rp-section">
-            <div class="rp-label">Experience</div>
-            <div id="expEditor"></div>
-            <button class="rp-add-btn" onclick="addExperience()" style="margin-top:6px">+ Add Experience</button>
+            <div class="rt-toolbar">
+              <button class="rt-btn" title="Bold" onclick="formatText('bold')"><b>B</b></button>
+              <button class="rt-btn" title="Italic" onclick="formatText('italic')"><i>I</i></button>
+              <button class="rt-btn" title="Underline" onclick="formatText('underline')"><u>U</u></button>
+              <div class="rt-divider"></div>
+              <button class="rt-btn" title="Bullet list">&#8226;</button>
+              <button class="rt-btn" title="Link">&#128279;</button>
+            </div>
+            <textarea class="rp-textarea" id="f-summary" rows="4" placeholder="Write your professional summary..." oninput="updateResume()">Product designer with 6+ years of experience creating user-centered digital products. Skilled in UX research, interaction design, and design systems. Proven ability to collaborate with cross-functional teams and deliver impactful solutions.</textarea>
           </div>
 
           <!-- Skills -->
           <div class="rp-section">
             <div class="rp-label">Skills</div>
-            <div id="skillEditor"></div>
-            <button class="rp-add-btn" onclick="addSkill()" style="margin-top:6px">+ Add Skill</button>
-          </div>
-
-          <!-- Education -->
-          <div class="rp-section">
-            <div class="rp-label">Education</div>
-            <div id="eduEditor"></div>
-            <button class="rp-add-btn" onclick="addEducation()" style="margin-top:6px">+ Add Education</button>
+            <div id="skillEditor">
+              <div class="skill-row">
+                <input class="rp-input" value="UX/UI Design" oninput="updateResume()" style="flex:1">
+                <div class="skill-slider" onclick="cycleSkill(this)"><div class="skill-slider-fill" style="width:95%"></div></div>
+                <span class="skill-pct">95%</span>
+                <button class="skill-remove" onclick="removeSkill(this)">&times;</button>
+              </div>
+              <div class="skill-row">
+                <input class="rp-input" value="Design Systems" oninput="updateResume()" style="flex:1">
+                <div class="skill-slider" onclick="cycleSkill(this)"><div class="skill-slider-fill" style="width:90%"></div></div>
+                <span class="skill-pct">90%</span>
+                <button class="skill-remove" onclick="removeSkill(this)">&times;</button>
+              </div>
+              <div class="skill-row">
+                <input class="rp-input" value="User Research" oninput="updateResume()" style="flex:1">
+                <div class="skill-slider" onclick="cycleSkill(this)"><div class="skill-slider-fill" style="width:85%"></div></div>
+                <span class="skill-pct">85%</span>
+                <button class="skill-remove" onclick="removeSkill(this)">&times;</button>
+              </div>
+              <div class="skill-row">
+                <input class="rp-input" value="Prototyping" oninput="updateResume()" style="flex:1">
+                <div class="skill-slider" onclick="cycleSkill(this)"><div class="skill-slider-fill" style="width:88%"></div></div>
+                <span class="skill-pct">88%</span>
+                <button class="skill-remove" onclick="removeSkill(this)">&times;</button>
+              </div>
+            </div>
+            <button class="rp-add-btn" onclick="addSkill()">+ Add Skill</button>
           </div>
 
           <!-- Achievement Inject -->
@@ -688,409 +685,10 @@ a{text-decoration:none;color:inherit}
 
 <script>
 const API = 'https://resume-hub-3eeb.onrender.com';
-let uploadedFile = null;       // The main uploaded file for AI operations
-let rebuildFile = null;       // Separate file for rebuild feature
+let uploadedFile = null;
+let rebuildFile = null;
 let chosenHeading = '';
 let currentTemplate = 'executive';
-
-// ── RESUME DATA MODEL ──
-let resumeData = {
-  name: '', title: '', email: '', phone: '', location: '',
-  linkedin: '', website: '', summary: '',
-  skills: [],      // [{name, level}]
-  experience: [],   // [{title, company, period, bullets:[]}]
-  education: [],    // [{degree, school, detail}]
-  tools: [],        // ['Tool1','Tool2']
-  languages: []     // [{name, level}]
-};
-
-// ── FILE UPLOAD ──
-function triggerUpload() {
-  document.getElementById('mainFileInput').click();
-}
-
-async function handleFileSelect(input) {
-  const file = input.files[0];
-  if (!file) return;
-
-  const fn = file.name.toLowerCase();
-  if (!fn.endsWith('.pdf') && !fn.endsWith('.docx')) {
-    setStatus('Please upload a PDF or DOCX file.', 'err');
-    return;
-  }
-
-  uploadedFile = file;
-
-  // Show loading
-  document.getElementById('uploadOverlay').innerHTML =
-    '<div style="text-align:center"><div class="spinner" style="width:32px;height:32px;border-width:3px;margin-bottom:16px"></div><div style="font-size:14px;font-weight:600">Parsing your resume...</div><div style="font-size:11px;color:var(--text-secondary);margin-top:6px">AI is reading and extracting your information</div></div>';
-
-  setStatus('Uploading and parsing resume...', 'loading');
-
-  try {
-    const form = new FormData();
-    form.append('resume', file);
-
-    const res = await fetch(API + '/parse', { method: 'POST', body: form });
-    const data = await res.json();
-
-    if (data.error) {
-      setStatus('Parse error: ' + data.error, 'err');
-      resetUploadOverlay();
-      return;
-    }
-
-    // Populate resumeData from parsed result
-    resumeData.name = data.name || '';
-    resumeData.title = data.title || '';
-    resumeData.email = data.email || '';
-    resumeData.phone = data.phone || '';
-    resumeData.location = data.location || '';
-    resumeData.linkedin = data.linkedin || '';
-    resumeData.website = data.website || '';
-    resumeData.summary = data.summary || '';
-    resumeData.skills = (data.skills || []).map(s => ({
-      name: s.name || s,
-      level: s.level || 75
-    }));
-    resumeData.experience = (data.experience || []).map(j => ({
-      title: j.title || '',
-      company: j.company || '',
-      period: j.period || '',
-      bullets: j.bullets || []
-    }));
-    resumeData.education = (data.education || []).map(e => ({
-      degree: e.degree || '',
-      school: e.school || '',
-      detail: e.detail || ''
-    }));
-    resumeData.tools = data.tools || [];
-    resumeData.languages = (data.languages || []).map(l => ({
-      name: l.name || l,
-      level: l.level || 3
-    }));
-
-    // Populate editor fields
-    populateEditorFields();
-
-    // Show resume preview
-    document.getElementById('uploadOverlay').classList.add('hidden');
-    document.getElementById('resumePage').style.display = '';
-
-    // Show file info bar
-    document.getElementById('fileInfoBar').classList.remove('hidden');
-    document.getElementById('fileInfoName').textContent = file.name;
-
-    // Hide the upload section in right panel
-    document.getElementById('rpUploadSection').style.display = 'none';
-
-    // Render the preview
-    renderPreview();
-
-    setStatus('Resume parsed successfully! You can now edit every section.', 'ok');
-  } catch (e) {
-    console.error('Parse error:', e);
-    setStatus('Server error. Make sure the backend is running and try again.', 'err');
-    resetUploadOverlay();
-  }
-
-  // Reset the input so same file can be re-uploaded
-  input.value = '';
-}
-
-function resetUploadOverlay() {
-  document.getElementById('uploadOverlay').innerHTML =
-    '<div class="upload-zone" id="uploadZone" onclick="triggerUpload()">' +
-    '<div class="upload-zone-icon">&#128196;</div>' +
-    '<h3>Upload Your Resume</h3>' +
-    '<p>Drag & drop your resume file here, or click to browse.<br>Supported formats: PDF, DOCX</p>' +
-    '<button class="upload-zone-btn">&#128228; Choose File</button>' +
-    '<div class="upload-zone-hint">Your resume will be parsed by AI and displayed for editing</div>' +
-    '</div>';
-  setupDragDrop();
-}
-
-function populateEditorFields() {
-  document.getElementById('f-name').value = resumeData.name;
-  document.getElementById('f-title').value = resumeData.title;
-  document.getElementById('f-email').value = resumeData.email;
-  document.getElementById('f-phone').value = resumeData.phone;
-  document.getElementById('f-location').value = resumeData.location;
-  document.getElementById('f-linkedin').value = resumeData.linkedin;
-  document.getElementById('f-website').value = resumeData.website;
-  document.getElementById('f-summary').value = resumeData.summary;
-
-  renderSkillEditor();
-  renderExpEditor();
-  renderEduEditor();
-
-  // Update sidebar
-  if (resumeData.name) {
-    document.getElementById('sbUserName').textContent = resumeData.name;
-    document.getElementById('sbAvatar').textContent = resumeData.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-  }
-}
-
-// ── RENDER PREVIEW ──
-function renderPreview() {
-  const d = resumeData;
-
-  // Name & Title
-  document.getElementById('rName').textContent = d.name || 'Your Name';
-  document.getElementById('rTitle').textContent = d.title || 'Job Title';
-  document.getElementById('rPhoto').textContent = d.name ? d.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() : '?';
-
-  // Contact
-  const contactParts = [];
-  if (d.email) contactParts.push('<span>&#9993; ' + esc(d.email) + '</span>');
-  if (d.phone) contactParts.push('<span>&#9742; ' + esc(d.phone) + '</span>');
-  if (d.location) contactParts.push('<span>&#9673; ' + esc(d.location) + '</span>');
-  if (d.linkedin) contactParts.push('<span>&#128279; ' + esc(d.linkedin) + '</span>');
-  if (d.website) contactParts.push('<span>&#127760; ' + esc(d.website) + '</span>');
-  document.getElementById('rContact').innerHTML = contactParts.join('');
-
-  // Summary
-  document.getElementById('rSummary').textContent = d.summary || '';
-
-  // Experience
-  const expContainer = document.getElementById('rExperience');
-  if (d.experience.length > 0) {
-    expContainer.innerHTML = d.experience.map(job => `
-      <div class="r-job">
-        <div class="r-job-head"><span class="r-job-title">${esc(job.title)}</span><span class="r-job-period">${esc(job.period)}</span></div>
-        <div class="r-job-company">${esc(job.company)}</div>
-        ${job.bullets.length ? '<ul class="r-job-bullets">' + job.bullets.map(b => '<li>' + esc(b) + '</li>').join('') + '</ul>' : ''}
-      </div>
-    `).join('');
-    document.getElementById('rsec-experience').style.display = '';
-  } else {
-    expContainer.innerHTML = '';
-    document.getElementById('rsec-experience').style.display = 'none';
-  }
-
-  // Skills
-  const skillsContainer = document.getElementById('rSkills');
-  if (d.skills.length > 0) {
-    skillsContainer.innerHTML = d.skills.map(s => `
-      <div class="r-skill">
-        <div class="r-skill-name">${esc(s.name)}</div>
-        <div class="r-skill-bar"><div class="r-skill-fill" style="width:${s.level}%"></div></div>
-      </div>
-    `).join('');
-    document.getElementById('rsec-skills').style.display = '';
-  } else {
-    skillsContainer.innerHTML = '';
-    document.getElementById('rsec-skills').style.display = 'none';
-  }
-
-  // Education
-  const eduContainer = document.getElementById('rEducation');
-  if (d.education.length > 0) {
-    eduContainer.innerHTML = d.education.map(e => `
-      <div class="r-edu">
-        <div class="r-edu-degree">${esc(e.degree)}</div>
-        <div class="r-edu-school">${esc(e.school)}</div>
-        <div class="r-edu-detail">${esc(e.detail)}</div>
-      </div>
-    `).join('');
-    document.getElementById('rsec-education').style.display = '';
-  } else {
-    eduContainer.innerHTML = '';
-    document.getElementById('rsec-education').style.display = 'none';
-  }
-
-  // Tools
-  const toolsContainer = document.getElementById('rTools');
-  if (d.tools.length > 0) {
-    toolsContainer.innerHTML = d.tools.map(t => `<span class="r-tag">${esc(t)}</span>`).join('');
-    document.getElementById('rsec-tools').style.display = '';
-  } else {
-    toolsContainer.innerHTML = '';
-    document.getElementById('rsec-tools').style.display = 'none';
-  }
-
-  // Languages
-  const langsContainer = document.getElementById('rLangs');
-  if (d.languages.length > 0) {
-    langsContainer.innerHTML = d.languages.map(l => `
-      <div class="r-lang">
-        <span class="r-lang-name">${esc(l.name)}</span>
-        <div class="r-lang-dots">${Array.from({length:5}, (_, i) =>
-          `<div class="r-lang-dot${i < l.level ? ' filled' : ''}"></div>`
-        ).join('')}</div>
-      </div>
-    `).join('');
-    document.getElementById('rsec-languages').style.display = '';
-  } else {
-    langsContainer.innerHTML = '';
-    document.getElementById('rsec-languages').style.display = 'none';
-  }
-
-  autoSave();
-}
-
-function esc(str) {
-  if (!str) return '';
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// ── RESUME LIVE UPDATE (from editor fields) ──
-function updateResume() {
-  resumeData.name = document.getElementById('f-name').value;
-  resumeData.title = document.getElementById('f-title').value;
-  resumeData.email = document.getElementById('f-email').value;
-  resumeData.phone = document.getElementById('f-phone').value;
-  resumeData.location = document.getElementById('f-location').value;
-  resumeData.linkedin = document.getElementById('f-linkedin').value;
-  resumeData.website = document.getElementById('f-website').value;
-  resumeData.summary = document.getElementById('f-summary').value;
-
-  // Update sidebar
-  if (resumeData.name) {
-    document.getElementById('sbUserName').textContent = resumeData.name;
-    document.getElementById('sbAvatar').textContent = resumeData.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-  }
-
-  renderPreview();
-}
-
-function focusField(field) {
-  const contentTab = document.querySelector('.rp-tab');
-  switchTab('content', contentTab);
-  const el = document.getElementById('f-' + field);
-  if (el) {
-    el.focus();
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-}
-
-// ── SKILL EDITOR ──
-function renderSkillEditor() {
-  const container = document.getElementById('skillEditor');
-  container.innerHTML = resumeData.skills.map((s, i) => `
-    <div class="skill-row">
-      <input class="rp-input" value="${esc(s.name)}" placeholder="Skill name" oninput="updateSkill(${i}, 'name', this.value)" style="flex:1">
-      <div class="skill-slider" onclick="cycleSkill(${i})"><div class="skill-slider-fill" style="width:${s.level}%"></div></div>
-      <span class="skill-pct">${s.level}%</span>
-      <button class="skill-remove" onclick="removeSkill(${i})">&times;</button>
-    </div>
-  `).join('');
-}
-
-function addSkill() {
-  resumeData.skills.push({ name: '', level: 75 });
-  renderSkillEditor();
-  renderPreview();
-}
-
-function removeSkill(idx) {
-  resumeData.skills.splice(idx, 1);
-  renderSkillEditor();
-  renderPreview();
-}
-
-function updateSkill(idx, prop, val) {
-  if (prop === 'name') resumeData.skills[idx].name = val;
-  renderPreview();
-}
-
-function cycleSkill(idx) {
-  const widths = [25, 50, 75, 85, 90, 95];
-  const current = resumeData.skills[idx].level;
-  let ci = widths.indexOf(current);
-  ci = (ci + 1) % widths.length;
-  resumeData.skills[idx].level = widths[ci];
-  renderSkillEditor();
-  renderPreview();
-}
-
-// ── EXPERIENCE EDITOR ──
-function renderExpEditor() {
-  const container = document.getElementById('expEditor');
-  container.innerHTML = resumeData.experience.map((job, i) => `
-    <div class="exp-block">
-      <button class="exp-block-remove" onclick="removeExperience(${i})">&times;</button>
-      <div class="exp-block-header">
-        <input class="rp-input" value="${esc(job.title)}" placeholder="Job Title" oninput="updateExp(${i},'title',this.value)" style="flex:2">
-        <input class="rp-input" value="${esc(job.company)}" placeholder="Company" oninput="updateExp(${i},'company',this.value)" style="flex:2">
-        <input class="rp-input" value="${esc(job.period)}" placeholder="2020 - Present" oninput="updateExp(${i},'period',this.value)" style="flex:1.2">
-      </div>
-      <div id="expBullets${i}">
-        ${job.bullets.map((b, bi) => `
-          <div class="exp-bullet-row">
-            <input class="rp-input" value="${esc(b)}" placeholder="Achievement bullet..." oninput="updateExpBullet(${i},${bi},this.value)">
-            <button class="bullet-remove" onclick="removeExpBullet(${i},${bi})">&times;</button>
-          </div>
-        `).join('')}
-      </div>
-      <button class="rp-add-btn" onclick="addExpBullet(${i})" style="margin-top:4px;font-size:10px;padding:4px 8px">+ Add Bullet</button>
-    </div>
-  `).join('');
-}
-
-function addExperience() {
-  resumeData.experience.push({ title: '', company: '', period: '', bullets: [''] });
-  renderExpEditor();
-  renderPreview();
-}
-
-function removeExperience(idx) {
-  resumeData.experience.splice(idx, 1);
-  renderExpEditor();
-  renderPreview();
-}
-
-function updateExp(idx, prop, val) {
-  resumeData.experience[idx][prop] = val;
-  renderPreview();
-}
-
-function updateExpBullet(expIdx, bulletIdx, val) {
-  resumeData.experience[expIdx].bullets[bulletIdx] = val;
-  renderPreview();
-}
-
-function addExpBullet(expIdx) {
-  resumeData.experience[expIdx].bullets.push('');
-  renderExpEditor();
-  renderPreview();
-}
-
-function removeExpBullet(expIdx, bulletIdx) {
-  resumeData.experience[expIdx].bullets.splice(bulletIdx, 1);
-  renderExpEditor();
-  renderPreview();
-}
-
-// ── EDUCATION EDITOR ──
-function renderEduEditor() {
-  const container = document.getElementById('eduEditor');
-  container.innerHTML = resumeData.education.map((e, i) => `
-    <div class="edu-block">
-      <button class="edu-block-remove" onclick="removeEducation(${i})">&times;</button>
-      <input class="rp-input" value="${esc(e.degree)}" placeholder="Degree" oninput="updateEdu(${i},'degree',this.value)" style="margin-bottom:4px">
-      <input class="rp-input" value="${esc(e.school)}" placeholder="School / University" oninput="updateEdu(${i},'school',this.value)" style="margin-bottom:4px">
-      <input class="rp-input" value="${esc(e.detail)}" placeholder="2015 - 2019, Honors" oninput="updateEdu(${i},'detail',this.value)">
-    </div>
-  `).join('');
-}
-
-function addEducation() {
-  resumeData.education.push({ degree: '', school: '', detail: '' });
-  renderEduEditor();
-  renderPreview();
-}
-
-function removeEducation(idx) {
-  resumeData.education.splice(idx, 1);
-  renderEduEditor();
-  renderPreview();
-}
-
-function updateEdu(idx, prop, val) {
-  resumeData.education[idx][prop] = val;
-  renderPreview();
-}
 
 // ── NAVIGATION ──
 function setNav(el) {
@@ -1099,6 +697,7 @@ function setNav(el) {
 }
 
 function goBack() {
+  // Try to pass data back to index.html
   const params = new URLSearchParams(window.location.search);
   window.location.href = 'index.html?' + params.toString();
 }
@@ -1115,11 +714,84 @@ function switchTab(tabId, el) {
   document.getElementById('tab-' + tabId).classList.add('active');
 }
 
+// ── RESUME LIVE UPDATE ──
+function updateResume() {
+  const name = document.getElementById('f-name').value;
+  const title = document.getElementById('f-title').value;
+  const email = document.getElementById('f-email').value;
+  const phone = document.getElementById('f-phone').value;
+  const location = document.getElementById('f-location').value;
+  const linkedin = document.getElementById('f-linkedin').value;
+  const website = document.getElementById('f-website').value;
+  const summary = document.getElementById('f-summary').value;
+
+  if (name) {
+    document.getElementById('rName').textContent = name;
+    document.getElementById('rPhoto').textContent = name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    document.getElementById('sbUserName').textContent = name;
+  }
+  if (title) document.getElementById('rTitle').textContent = title;
+  if (summary) document.getElementById('rSummary').textContent = summary;
+
+  // Update contact
+  const contactParts = [];
+  if (email) contactParts.push('&#9993; ' + email);
+  if (phone) contactParts.push('&#9742; ' + phone);
+  if (location) contactParts.push('&#9673; ' + location);
+  if (linkedin) contactParts.push('&#128279; ' + linkedin);
+  if (website) contactParts.push('&#127760; ' + website);
+  document.querySelector('.r-contact').innerHTML = contactParts.map(c => '<span>' + c + '</span>').join('');
+
+  autoSave();
+}
+
+function focusField(field) {
+  // Switch to content tab and focus the relevant field
+  const contentTab = document.querySelector('.rp-tab');
+  switchTab('content', contentTab);
+  const el = document.getElementById('f-' + field);
+  if (el) el.focus();
+}
+
+// ── SKILLS EDITOR ──
+function addSkill() {
+  const container = document.getElementById('skillEditor');
+  const row = document.createElement('div');
+  row.className = 'skill-row';
+  row.innerHTML = `
+    <input class="rp-input" value="" placeholder="Skill name" oninput="updateResume()" style="flex:1">
+    <div class="skill-slider" onclick="cycleSkill(this)"><div class="skill-slider-fill" style="width:75%"></div></div>
+    <span class="skill-pct">75%</span>
+    <button class="skill-remove" onclick="removeSkill(this)">&times;</button>
+  `;
+  container.appendChild(row);
+  row.querySelector('.rp-input').focus();
+  updateResume();
+}
+
+function removeSkill(btn) {
+  btn.closest('.skill-row').remove();
+  updateResume();
+}
+
+function cycleSkill(slider) {
+  const fill = slider.querySelector('.skill-slider-fill');
+  const pctEl = slider.nextElementSibling;
+  const widths = [25, 50, 75, 85, 90, 95];
+  const current = parseInt(fill.style.width);
+  let idx = widths.indexOf(current);
+  idx = (idx + 1) % widths.length;
+  fill.style.width = widths[idx] + '%';
+  pctEl.textContent = widths[idx] + '%';
+  updateResume();
+}
+
 // ── DESIGN CONTROLS ──
 function setAccentColor(el, color) {
   document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
   el.classList.add('active');
   document.documentElement.style.setProperty('--accent', color);
+  // Update resume preview accent
   document.querySelectorAll('.r-title, .r-job-company, .r-edu-school').forEach(el => el.style.color = color);
   document.querySelectorAll('.r-section-head').forEach(el => {
     el.style.color = color;
@@ -1152,7 +824,6 @@ function setLayout(type) {
     document.getElementById('resumePage').style.columnGap = '20px';
   } else {
     document.getElementById('resumePage').style.columnCount = '';
-    document.getElementById('resumePage').style.columnGap = '';
   }
   autoSave();
 }
@@ -1166,10 +837,22 @@ function setTemplate(el, name) {
 }
 
 // ── FILE HANDLING ──
+function handleResumeUpload(file) {
+  if (!file) return;
+  uploadedFile = file;
+  setStatus('Resume uploaded: ' + file.name, 'ok');
+  // Try to read the file and populate fields
+  if (file.name.toLowerCase().endsWith('.pdf')) {
+    // We can't parse PDF client-side, just store for API use
+  } else if (file.name.toLowerCase().endsWith('.docx')) {
+    // Same - store for API use
+  }
+}
+
 function handleRebuildFile(inp) {
   if (!inp.files[0]) return;
   rebuildFile = inp.files[0];
-  document.getElementById('rbFileName').textContent = '\u2713 ' + rebuildFile.name;
+  document.getElementById('rbFileName').textContent = '✓ ' + rebuildFile.name;
   document.getElementById('rbRunBtn').disabled = false;
 }
 
@@ -1181,7 +864,7 @@ async function doPolish() {
   if (!uploadedFile) { setStatus('Upload a resume first so AI can classify.', 'err'); return; }
 
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>';
+  btn.innerHTML = '&#8987; Analyzing...';
   setStatus('AI is reading your resume and polishing...', 'loading');
 
   const form = new FormData();
@@ -1209,7 +892,6 @@ async function doPolish() {
 async function doInject() {
   if (!uploadedFile) { setStatus('Upload a resume first.', 'err'); return; }
   const updates = document.getElementById('achieveTa').value;
-  if (!updates.trim()) { setStatus('Write an achievement to inject first.', 'err'); return; }
 
   setStatus('Injecting achievement into the correct heading...', 'loading');
 
@@ -1273,7 +955,6 @@ async function download(format) {
 async function doRebuild() {
   if (!rebuildFile) { setStatus('Choose a resume file to rebuild.', 'err'); return; }
 
-  document.getElementById('rbRunBtn').disabled = true;
   setStatus('AI is completely rebuilding your resume (15-30s)...', 'loading');
 
   const form = new FormData();
@@ -1298,8 +979,6 @@ async function doRebuild() {
     }
   } catch(e) {
     setStatus('Server error during rebuild. Retry.', 'err');
-  } finally {
-    document.getElementById('rbRunBtn').disabled = false;
   }
 }
 
@@ -1317,20 +996,12 @@ function autoSave() {
   document.getElementById('saveStatus').textContent = 'Saving...';
   saveTimeout = setTimeout(() => {
     document.getElementById('saveStatus').textContent = 'Saved just now';
-    // Save to sessionStorage
-    try {
-      sessionStorage.setItem('resumeData', JSON.stringify(resumeData));
-    } catch(e) {}
   }, 800);
 }
 
 // ── PREVIEW ──
 function previewResume() {
   const page = document.getElementById('resumePage');
-  if (page.style.display === 'none') {
-    setStatus('Upload a resume first to preview.', 'err');
-    return;
-  }
   const w = window.open('', '_blank');
   w.document.write('<html><head><title>Resume Preview</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><style>body{margin:0;display:flex;justify-content:center;background:#f0f0f0;padding:20px}</style></head><body>' + page.outerHTML + '</body></html>');
   w.document.close();
@@ -1351,58 +1022,23 @@ function closeMobile() {
   document.getElementById('mobileOverlay').classList.remove('show');
 }
 
-// ── DRAG & DROP ──
-function setupDragDrop() {
-  const preview = document.getElementById('previewArea');
-  const zone = document.getElementById('uploadZone');
-
-  ['dragenter','dragover'].forEach(e => {
-    preview.addEventListener(e, ev => { ev.preventDefault(); ev.stopPropagation(); });
-    if (zone) zone.addEventListener(e, ev => { ev.preventDefault(); ev.stopPropagation(); zone.classList.add('dragover'); });
-  });
-  ['dragleave','drop'].forEach(e => {
-    preview.addEventListener(e, ev => { ev.preventDefault(); ev.stopPropagation(); });
-    if (zone) zone.addEventListener(e, ev => { ev.preventDefault(); ev.stopPropagation(); zone.classList.remove('dragover'); });
-  });
-
-  preview.addEventListener('drop', ev => {
-    const f = ev.dataTransfer.files[0];
-    if (f && (f.name.toLowerCase().endsWith('.pdf') || f.name.toLowerCase().endsWith('.docx'))) {
-      // Create a synthetic input event
-      const dt = new DataTransfer();
-      dt.items.add(f);
-      const input = document.getElementById('mainFileInput');
-      input.files = dt.files;
-      handleFileSelect(input);
-    }
-  });
+// ── FORMAT TEXT (rich text placeholder) ──
+function formatText(cmd) {
+  // Visual feedback only - would need contenteditable for real formatting
+  setStatus('Formatting: ' + cmd, '');
 }
 
-// ── INIT ──
+// ── INIT: Read params from index.html ──
 (function init() {
   const params = new URLSearchParams(window.location.search);
+  const ats = params.get('ats');
+  const name = params.get('name');
+  const title = params.get('title');
 
-  // Try to restore from sessionStorage
-  try {
-    const saved = sessionStorage.getItem('resumeData');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (parsed.name || parsed.experience?.length || parsed.skills?.length) {
-        Object.assign(resumeData, parsed);
-        populateEditorFields();
+  if (name) document.getElementById('rName').textContent = name;
+  if (title) document.getElementById('rTitle').textContent = title;
 
-        document.getElementById('uploadOverlay').classList.add('hidden');
-        document.getElementById('resumePage').style.display = '';
-        document.getElementById('rpUploadSection').style.display = 'none';
-        renderPreview();
-
-        // Still need to re-upload file for AI features
-        setStatus('Restored from session. Re-upload file for AI features.', 'ok');
-      }
-    }
-  } catch(e) {}
-
-  // Check for data from index.html
+  // Try to read sessionStorage for pending data
   try {
     const pendingUpdate = sessionStorage.getItem('pendingUpdate');
     const pendingHeading = sessionStorage.getItem('pendingHeading');
@@ -1417,14 +1053,21 @@ function setupDragDrop() {
       document.getElementById('headingPill').classList.add('show');
     }
     if (resumeFileName) {
-      document.getElementById('fileInfoBar').classList.remove('hidden');
-      document.getElementById('fileInfoName').textContent = resumeFileName;
+      // We can't restore the File object from sessionStorage, but we can show the name
       setStatus('Resume from Hub: ' + resumeFileName + '. Re-upload for full features.', 'ok');
     }
   } catch(e) {}
 
-  // Setup drag and drop
-  setupDragDrop();
+  // Handle file drag-drop on preview area
+  const preview = document.getElementById('previewArea');
+  ['dragenter','dragover'].forEach(e => preview.addEventListener(e, ev => ev.preventDefault()));
+  ['dragleave','drop'].forEach(e => preview.addEventListener(e, ev => ev.preventDefault()));
+  preview.addEventListener('drop', ev => {
+    const f = ev.dataTransfer.files[0];
+    if (f && (f.name.endsWith('.pdf') || f.name.endsWith('.docx'))) {
+      handleResumeUpload(f);
+    }
+  });
 })();
 </script>
 </body>
