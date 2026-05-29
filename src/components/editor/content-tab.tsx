@@ -1,6 +1,6 @@
 'use client'
 
-import { useResumeStore } from '@/lib/resume-store'
+import { useResumeStore, type ResumeData } from '@/lib/resume-store'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
@@ -18,16 +18,124 @@ import {
   Trash2,
   Wand2,
   Loader2,
+  FileText,
+  CheckCircle2,
+  AlertCircle,
 } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { toast } from 'sonner'
 
 export function ContentTab() {
   const { resumeData, updateResumeField, setResumeData } = useResumeStore()
-  const [uploadOpen, setUploadOpen] = useState(false)
+  const [uploadOpen, setUploadOpen] = useState(true)
   const [rebuildOpen, setRebuildOpen] = useState(false)
   const [achievement, setAchievement] = useState('')
   const [polishing, setPolishing] = useState(false)
+  const [uploading, setUploading] = useState(false)
+  const [dragOver, setDragOver] = useState(false)
+  const [uploadedFile, setUploadedFile] = useState<string | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const rebuildFileInputRef = useRef<HTMLInputElement>(null)
+  const [rebuildFile, setRebuildFile] = useState<string | null>(null)
+
+  const handleFileUpload = useCallback(async (file: File) => {
+    if (!file) return
+
+    const validTypes = [
+      'application/pdf',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/msword',
+      'text/plain',
+    ]
+    const validExts = ['.pdf', '.docx', '.doc', '.txt']
+    const ext = file.name.substring(file.name.lastIndexOf('.')).toLowerCase()
+
+    if (!validTypes.includes(file.type) && !validExts.includes(ext)) {
+      toast.error('Please upload a PDF, DOCX, DOC, or TXT file')
+      return
+    }
+
+    setUploading(true)
+    setUploadedFile(file.name)
+
+    try {
+      const formData = new FormData()
+      formData.append('resume', file)
+
+      const res = await fetch('/api/parse', {
+        method: 'POST',
+        body: formData,
+      })
+
+      const data = await res.json()
+
+      if (data.error) {
+        toast.error(data.error)
+        return
+      }
+
+      if (data.parsed) {
+        const parsed = data.parsed
+
+        // Merge parsed data with defaults to ensure all fields exist
+        const mergedData: ResumeData = {
+          name: parsed.name || resumeData.name,
+          title: parsed.title || resumeData.title,
+          bio: parsed.bio || resumeData.bio,
+          email: parsed.email || resumeData.email,
+          phone: parsed.phone || resumeData.phone,
+          location: parsed.location || resumeData.location,
+          linkedin: parsed.linkedin || resumeData.linkedin,
+          website: parsed.website || resumeData.website,
+          skills: parsed.skills?.length ? parsed.skills : resumeData.skills,
+          experience: parsed.experience?.length ? parsed.experience : resumeData.experience,
+          education: parsed.education?.length ? parsed.education : resumeData.education,
+          tools: parsed.tools?.length ? parsed.tools : resumeData.tools,
+          languages: parsed.languages?.length ? parsed.languages : resumeData.languages,
+        }
+
+        setResumeData(mergedData)
+
+        if (data.warning) {
+          toast.warning(data.warning, { duration: 5000 })
+        } else {
+          const filledCount = Object.values(parsed).filter(
+            (v) => v && (typeof v === 'string' ? v.trim() : Array.isArray(v) ? v.length > 0 : true)
+          ).length
+          toast.success(`Resume parsed! ${filledCount} fields extracted.`, {
+            description: 'Review and edit the extracted information below.',
+            duration: 4000,
+          })
+        }
+      }
+    } catch (error) {
+      console.error('Upload error:', error)
+      toast.error('Failed to parse resume. Please try again.')
+    } finally {
+      setUploading(false)
+    }
+  }, [resumeData, setResumeData])
+
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    setDragOver(false)
+    const file = e.dataTransfer.files[0]
+    if (file) handleFileUpload(file)
+  }, [handleFileUpload])
+
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    setDragOver(true)
+  }, [])
+
+  const handleDragLeave = useCallback(() => {
+    setDragOver(false)
+  }, [])
+
+  const handleFileInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) handleFileUpload(file)
+  }, [handleFileUpload])
 
   const addSkill = () => {
     updateResumeField('skills', [...resumeData.skills, { name: '', level: 50 }])
@@ -156,10 +264,45 @@ export function ContentTab() {
           <ChevronDown className={`h-3.5 w-3.5 transition-transform ${uploadOpen ? 'rotate-180' : ''}`} />
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-2">
-          <div className="border-2 border-dashed border-gray-200 rounded-lg p-6 text-center">
-            <Upload className="h-6 w-6 text-gray-400 mx-auto mb-2" />
-            <p className="text-xs text-gray-500">Drag & drop or click to upload</p>
-            <p className="text-[10px] text-gray-400 mt-1">PDF, DOCX supported</p>
+          <div
+            className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-all ${
+              dragOver
+                ? 'border-indigo-400 bg-indigo-50'
+                : uploadedFile
+                ? 'border-green-300 bg-green-50'
+                : 'border-gray-200 hover:border-indigo-300 hover:bg-indigo-50/50'
+            }`}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onClick={() => fileInputRef.current?.click()}
+          >
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".pdf,.docx,.doc,.txt"
+              className="hidden"
+              onChange={handleFileInputChange}
+            />
+            {uploading ? (
+              <>
+                <Loader2 className="h-6 w-6 text-indigo-500 mx-auto mb-2 animate-spin" />
+                <p className="text-xs text-indigo-600 font-medium">Parsing your resume...</p>
+                <p className="text-[10px] text-indigo-400 mt-1">AI is extracting your information</p>
+              </>
+            ) : uploadedFile ? (
+              <>
+                <CheckCircle2 className="h-6 w-6 text-green-500 mx-auto mb-2" />
+                <p className="text-xs text-green-700 font-medium">{uploadedFile}</p>
+                <p className="text-[10px] text-green-500 mt-1">Click or drop to upload a different file</p>
+              </>
+            ) : (
+              <>
+                <Upload className="h-6 w-6 text-gray-400 mx-auto mb-2" />
+                <p className="text-xs text-gray-500">Drag & drop or click to upload</p>
+                <p className="text-[10px] text-gray-400 mt-1">PDF, DOCX, DOC, TXT supported</p>
+              </>
+            )}
           </div>
         </CollapsibleContent>
       </Collapsible>
@@ -524,9 +667,35 @@ export function ContentTab() {
         <CollapsibleContent className="mt-2 space-y-2 p-3 border rounded-lg">
           <div>
             <Label className="text-xs">Upload Current Resume</Label>
-            <div className="border-2 border-dashed border-gray-200 rounded-lg p-4 text-center mt-1">
-              <Upload className="h-4 w-4 text-gray-400 mx-auto mb-1" />
-              <p className="text-[10px] text-gray-500">Drop file here</p>
+            <div
+              className={`border-2 border-dashed rounded-lg p-4 text-center mt-1 cursor-pointer transition-all ${
+                rebuildFile
+                  ? 'border-green-300 bg-green-50'
+                  : 'border-gray-200 hover:border-indigo-300 hover:bg-indigo-50/50'
+              }`}
+              onClick={() => rebuildFileInputRef.current?.click()}
+            >
+              <input
+                ref={rebuildFileInputRef}
+                type="file"
+                accept=".pdf,.docx,.doc,.txt"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0]
+                  if (file) setRebuildFile(file.name)
+                }}
+              />
+              {rebuildFile ? (
+                <>
+                  <CheckCircle2 className="h-4 w-4 text-green-500 mx-auto mb-1" />
+                  <p className="text-[10px] text-green-700 font-medium">{rebuildFile}</p>
+                </>
+              ) : (
+                <>
+                  <Upload className="h-4 w-4 text-gray-400 mx-auto mb-1" />
+                  <p className="text-[10px] text-gray-500">Drop file here or click to browse</p>
+                </>
+              )}
             </div>
           </div>
           <div>
@@ -554,5 +723,3 @@ export function ContentTab() {
     </div>
   )
 }
-
-
