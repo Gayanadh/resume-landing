@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Career Architect | Resume Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --sidebar-w:220px;
-  --right-w:300px;
+  --right-w:310px;
   --bg-primary:#0f1117;
   --bg-sidebar:#1a1d2e;
   --bg-card:#1e2235;
@@ -28,17 +28,17 @@
   --amber:#f59e0b;
   --red:#ef4444;
 }
-html,body{height:100%;overflow:hidden}
-body{font-family:'Inter',sans-serif;background:var(--bg-primary);color:var(--text-primary);font-size:13px;display:flex;flex-direction:column}
+html{height:100%}
+body{font-family:'Inter',sans-serif;background:var(--bg-primary);color:var(--text-primary);font-size:13px;height:100%;margin:0;overflow:hidden}
 button,input,select,textarea{font-family:'Inter',sans-serif;outline:none}
 button{cursor:pointer;border:none}
 a{text-decoration:none;color:inherit}
 
-/* ── LAYOUT ── */
-.app{display:flex;flex:1;overflow:hidden}
+/* ── FULL PAGE LAYOUT ── */
+.app{display:flex;height:100vh;width:100vw;overflow:hidden}
 
 /* ── LEFT SIDEBAR ── */
-.sidebar{width:var(--sidebar-w);background:var(--bg-sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;overflow-x:hidden}
+.sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);background:var(--bg-sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;overflow-x:hidden}
 .sidebar::-webkit-scrollbar{width:3px}
 .sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
 
@@ -68,11 +68,11 @@ a{text-decoration:none;color:inherit}
 .sb-user-email{font-size:10px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sb-user-arrow{color:var(--text-muted);font-size:12px}
 
-/* ── MAIN CONTENT ── */
-.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+/* ── MAIN AREA ── */
+.main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
 
 /* ── TOP HEADER ── */
-.topbar{height:52px;background:var(--bg-sidebar);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:12px;flex-shrink:0}
+.topbar{height:52px;min-height:52px;background:var(--bg-sidebar);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:12px;flex-shrink:0}
 .top-back{display:flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:12px;cursor:pointer;padding:5px 8px;border-radius:6px;transition:all .15s}
 .top-back:hover{background:var(--bg-hover);color:var(--text-primary)}
 .top-back svg{width:16px;height:16px}
@@ -88,13 +88,13 @@ a{text-decoration:none;color:inherit}
 .top-btn svg{width:14px;height:14px}
 
 /* ── CONTENT AREA ── */
-.content{flex:1;display:flex;overflow:hidden}
+.content{flex:1;display:flex;overflow:hidden;min-height:0}
 
 /* ── RESUME PREVIEW (CENTER) ── */
-.preview-area{flex:1;display:flex;align-items:center;justify-content:center;overflow:auto;padding:24px;background:var(--bg-primary);position:relative}
-.preview-area::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(108,92,231,.04),transparent 60%),radial-gradient(circle at 70% 60%,rgba(168,85,247,.03),transparent 50%);pointer-events:none}
+.preview-area{flex:1;min-width:0;overflow:auto;padding:24px;background:var(--bg-primary);display:flex;justify-content:center;align-items:flex-start;position:relative}
+.preview-area::before{content:'';position:fixed;inset:0;background:radial-gradient(circle at 30% 40%,rgba(108,92,231,.04),transparent 60%),radial-gradient(circle at 70% 60%,rgba(168,85,247,.03),transparent 50%);pointer-events:none;z-index:0}
 
-.resume-page{width:595px;min-height:842px;background:#fff;border-radius:4px;box-shadow:0 8px 40px rgba(0,0,0,.5);position:relative;z-index:1;padding:40px;color:#1a1a2e;font-size:10.5px;line-height:1.55;overflow:hidden}
+.resume-page{width:595px;min-height:842px;background:#fff;border-radius:4px;box-shadow:0 8px 40px rgba(0,0,0,.5);position:relative;z-index:1;padding:40px;color:#1a1a2e;font-size:10.5px;line-height:1.55;flex-shrink:0}
 
 /* Resume inner styles */
 .r-header{display:flex;gap:20px;margin-bottom:20px;align-items:flex-start}
@@ -140,13 +140,13 @@ a{text-decoration:none;color:inherit}
 .r-edu-detail{font-size:9px;color:#94a3b8}
 
 /* ── RIGHT PANEL ── */
-.right-panel{width:var(--right-w);background:var(--bg-sidebar);border-left:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow:hidden}
+.right-panel{width:var(--right-w);min-width:var(--right-w);background:var(--bg-sidebar);border-left:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow:hidden}
 .rp-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0}
 .rp-tab{flex:1;padding:12px 0;text-align:center;font-size:11.5px;font-weight:600;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
 .rp-tab:hover{color:var(--text-secondary)}
 .rp-tab.active{color:#fff;border-bottom-color:var(--accent)}
 
-.rp-content{flex:1;overflow-y:auto;padding:0}
+.rp-content{flex:1;overflow-y:auto;padding:0;min-height:0}
 .rp-content::-webkit-scrollbar{width:3px}
 .rp-content::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
 
@@ -158,6 +158,17 @@ a{text-decoration:none;color:inherit}
 .rp-textarea{width:100%;padding:8px 10px;background:var(--bg-input);border:1px solid var(--border2);border-radius:6px;color:var(--text-primary);font-size:12px;resize:vertical;min-height:60px;line-height:1.5;transition:border-color .2s}
 .rp-textarea:focus{border-color:var(--accent)}
 .rp-textarea::placeholder{color:var(--text-muted)}
+
+/* Upload zone */
+.upload-zone{border:1.5px dashed var(--border2);border-radius:8px;padding:14px;text-align:center;background:var(--bg-input);cursor:pointer;transition:all .2s;position:relative;margin-bottom:6px}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--accent);background:rgba(108,92,231,.08)}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-icon{font-size:22px;margin-bottom:4px}
+.upload-text{font-size:11px;color:var(--text-muted);line-height:1.5}
+.upload-text span{color:var(--accent);font-weight:600}
+.file-badge{display:none;align-items:center;gap:5px;background:rgba(16,185,129,.1);border:1px solid var(--green);border-radius:5px;padding:4px 8px;margin-top:6px}
+.file-badge.show{display:flex}
+.file-badge span{font-size:10px;color:var(--green);font-weight:500}
 
 /* Rich text toolbar */
 .rt-toolbar{display:flex;align-items:center;gap:1px;padding:4px;background:var(--bg-card);border-radius:6px;margin-bottom:6px;border:1px solid var(--border)}
@@ -249,9 +260,9 @@ a{text-decoration:none;color:inherit}
   .nav-item{justify-content:center;padding:10px}
   .sb-user{justify-content:center}
 }
-@media(max-width:800px){
+@media(max-width:850px){
   :root{--right-w:0px}
-  .right-panel{position:fixed;right:0;top:0;height:100vh;width:300px;z-index:200;transform:translateX(100%);transition:transform .3s}
+  .right-panel{position:fixed;right:0;top:0;height:100vh;width:320px;z-index:200;transform:translateX(100%);transition:transform .3s}
   .right-panel.open{transform:translateX(0)}
   .mobile-edit-toggle{display:flex !important}
   .sidebar{position:fixed;left:0;top:0;height:100vh;z-index:200;transform:translateX(-100%);width:220px;transition:transform .3s}
@@ -259,9 +270,9 @@ a{text-decoration:none;color:inherit}
   .mobile-menu-toggle{display:flex !important}
   .mobile-overlay{display:block !important}
 }
-.mobile-edit-toggle,.mobile-menu-toggle{display:none;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:var(--bg-card);color:var(--text-secondary);border:1px solid var(--border2);font-size:16px}
-.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:150}
-.mobile-overlay.show{display:block}
+.mobile-edit-toggle,.mobile-menu-toggle{display:none !important;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:var(--bg-card);color:var(--text-secondary);border:1px solid var(--border2);font-size:16px}
+.mobile-overlay{display:none !important;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:150}
+.mobile-overlay.show{display:block !important}
 
 /* ── SCROLLBAR GLOBAL ── */
 ::-webkit-scrollbar{width:4px;height:4px}
@@ -271,8 +282,9 @@ a{text-decoration:none;color:inherit}
 </head>
 <body>
 
-<!-- LEFT SIDEBAR -->
 <div class="app">
+
+<!-- LEFT SIDEBAR -->
 <aside class="sidebar" id="sidebar">
   <div class="sb-logo">
     <div class="sb-logo-mark">RP</div>
@@ -319,7 +331,7 @@ a{text-decoration:none;color:inherit}
   </div>
 
   <div class="sb-user">
-    <div class="sb-avatar">GK</div>
+    <div class="sb-avatar" id="sbAvatar">GK</div>
     <div class="sb-user-info">
       <div class="sb-user-name" id="sbUserName">Your Name</div>
       <div class="sb-user-email">gk@resumehub.com</div>
@@ -377,7 +389,7 @@ a{text-decoration:none;color:inherit}
             <div class="r-name" id="rName">Your Name</div>
             <div class="r-title" id="rTitle">Job Title</div>
             <div class="r-bio" id="rBio">A dedicated professional with a passion for delivering high-quality results and driving team success.</div>
-            <div class="r-contact">
+            <div class="r-contact" id="rContact">
               <span>&#9993; email@example.com</span>
               <span>&#9742; +1 234 567 890</span>
               <span>&#9673; City, Country</span>
@@ -476,6 +488,19 @@ a{text-decoration:none;color:inherit}
         <!-- ════════ CONTENT TAB ════════ -->
         <div class="tab-panel active" id="tab-content">
 
+          <!-- Upload Resume -->
+          <div class="rp-section">
+            <div class="rp-label">Upload Resume</div>
+            <div class="upload-zone" id="uploadZone">
+              <input type="file" id="resumeUpload" accept=".pdf,.docx" onchange="handleResumeUpload(this)">
+              <div class="upload-icon">&#128196;</div>
+              <div class="upload-text">Drop file here or <span>click to browse</span><br>PDF or DOCX</div>
+            </div>
+            <div class="file-badge" id="fileBadge">
+              <span>&#10003;</span><span id="fileNameLbl">file.pdf</span>
+            </div>
+          </div>
+
           <!-- Personal Info -->
           <div class="rp-section">
             <div class="rp-label">Personal Information</div>
@@ -541,10 +566,8 @@ a{text-decoration:none;color:inherit}
           <!-- Achievement Inject -->
           <div class="rp-section">
             <div class="rp-label">Add Achievement</div>
-            <div class="polish-row">
-              <textarea class="rp-textarea" id="achieveTa" placeholder="e.g. I reduced SLA breaches by 40% through coordinating teams..." style="min-height:50px"></textarea>
-              <button class="polish-btn" id="polishBtn" onclick="doPolish()">&#10024; Polish</button>
-            </div>
+            <textarea class="rp-textarea" id="achieveTa" placeholder="e.g. I reduced SLA breaches by 40% through coordinating teams..." style="min-height:50px"></textarea>
+            <button class="polish-btn" id="polishBtn" onclick="doPolish()" style="margin-top:6px;width:100%">&#10024; AI Polish &amp; Classify</button>
             <div class="heading-pill" id="headingPill">
               <span style="color:var(--text-muted)">Will inject under:</span>
               <span class="h-badge" id="headingBadge"></span>
@@ -681,6 +704,7 @@ a{text-decoration:none;color:inherit}
 
   </div><!-- end content -->
 </div><!-- end main -->
+
 </div><!-- end app -->
 
 <script>
@@ -697,7 +721,6 @@ function setNav(el) {
 }
 
 function goBack() {
-  // Try to pass data back to index.html
   const params = new URLSearchParams(window.location.search);
   window.location.href = 'index.html?' + params.toString();
 }
@@ -714,6 +737,34 @@ function switchTab(tabId, el) {
   document.getElementById('tab-' + tabId).classList.add('active');
 }
 
+// ── RESUME UPLOAD ──
+function handleResumeUpload(inp) {
+  if (!inp.files || !inp.files[0]) return;
+  uploadedFile = inp.files[0];
+  document.getElementById('fileNameLbl').textContent = uploadedFile.name;
+  document.getElementById('fileBadge').classList.add('show');
+  setStatus('Resume uploaded: ' + uploadedFile.name, 'ok');
+}
+
+// Drag-drop on upload zone
+const uz = document.getElementById('uploadZone');
+['dragenter','dragover'].forEach(e => uz.addEventListener(e, ev => { ev.preventDefault(); uz.classList.add('drag'); }));
+['dragleave','drop'].forEach(e => uz.addEventListener(e, ev => { ev.preventDefault(); uz.classList.remove('drag'); }));
+uz.addEventListener('drop', ev => {
+  const f = ev.dataTransfer.files[0];
+  if (!f) return;
+  const dt = new DataTransfer(); dt.items.add(f);
+  document.getElementById('resumeUpload').files = dt.files;
+  handleResumeUpload(document.getElementById('resumeUpload'));
+});
+
+function handleRebuildFile(inp) {
+  if (!inp.files[0]) return;
+  rebuildFile = inp.files[0];
+  document.getElementById('rbFileName').textContent = '\u2713 ' + rebuildFile.name;
+  document.getElementById('rbRunBtn').disabled = false;
+}
+
 // ── RESUME LIVE UPDATE ──
 function updateResume() {
   const name = document.getElementById('f-name').value;
@@ -727,26 +778,29 @@ function updateResume() {
 
   if (name) {
     document.getElementById('rName').textContent = name;
-    document.getElementById('rPhoto').textContent = name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    const initials = name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    document.getElementById('rPhoto').textContent = initials;
     document.getElementById('sbUserName').textContent = name;
+    document.getElementById('sbAvatar').textContent = initials;
   }
   if (title) document.getElementById('rTitle').textContent = title;
   if (summary) document.getElementById('rSummary').textContent = summary;
 
   // Update contact
   const contactParts = [];
-  if (email) contactParts.push('&#9993; ' + email);
-  if (phone) contactParts.push('&#9742; ' + phone);
-  if (location) contactParts.push('&#9673; ' + location);
-  if (linkedin) contactParts.push('&#128279; ' + linkedin);
-  if (website) contactParts.push('&#127760; ' + website);
-  document.querySelector('.r-contact').innerHTML = contactParts.map(c => '<span>' + c + '</span>').join('');
+  if (email) contactParts.push('\u2709 ' + email);
+  if (phone) contactParts.push('\u260E ' + phone);
+  if (location) contactParts.push('\u25C9 ' + location);
+  if (linkedin) contactParts.push('\uD83D\uDD17 ' + linkedin);
+  if (website) contactParts.push('\uD83C\uDF10 ' + website);
+  if (contactParts.length > 0) {
+    document.getElementById('rContact').innerHTML = contactParts.map(c => '<span>' + c + '</span>').join('');
+  }
 
   autoSave();
 }
 
 function focusField(field) {
-  // Switch to content tab and focus the relevant field
   const contentTab = document.querySelector('.rp-tab');
   switchTab('content', contentTab);
   const el = document.getElementById('f-' + field);
@@ -758,12 +812,7 @@ function addSkill() {
   const container = document.getElementById('skillEditor');
   const row = document.createElement('div');
   row.className = 'skill-row';
-  row.innerHTML = `
-    <input class="rp-input" value="" placeholder="Skill name" oninput="updateResume()" style="flex:1">
-    <div class="skill-slider" onclick="cycleSkill(this)"><div class="skill-slider-fill" style="width:75%"></div></div>
-    <span class="skill-pct">75%</span>
-    <button class="skill-remove" onclick="removeSkill(this)">&times;</button>
-  `;
+  row.innerHTML = '<input class="rp-input" value="" placeholder="Skill name" oninput="updateResume()" style="flex:1"><div class="skill-slider" onclick="cycleSkill(this)"><div class="skill-slider-fill" style="width:75%"></div></div><span class="skill-pct">75%</span><button class="skill-remove" onclick="removeSkill(this)">\u00D7</button>';
   container.appendChild(row);
   row.querySelector('.rp-input').focus();
   updateResume();
@@ -790,21 +839,15 @@ function cycleSkill(slider) {
 function setAccentColor(el, color) {
   document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
   el.classList.add('active');
-  document.documentElement.style.setProperty('--accent', color);
-  // Update resume preview accent
-  document.querySelectorAll('.r-title, .r-job-company, .r-edu-school').forEach(el => el.style.color = color);
-  document.querySelectorAll('.r-section-head').forEach(el => {
-    el.style.color = color;
-    el.style.borderBottomColor = color;
-  });
-  document.querySelectorAll('.r-skill-fill').forEach(el => el.style.background = color);
-  document.querySelectorAll('.r-lang-dot.filled').forEach(el => el.style.background = color);
+  document.querySelectorAll('.r-title, .r-job-company, .r-edu-school').forEach(e => e.style.color = color);
+  document.querySelectorAll('.r-section-head').forEach(e => { e.style.color = color; e.style.borderBottomColor = color; });
+  document.querySelectorAll('.r-skill-fill').forEach(e => e.style.background = color);
+  document.querySelectorAll('.r-lang-dot.filled').forEach(e => e.style.background = color);
   autoSave();
 }
 
 function changeFont() {
-  const font = document.getElementById('fontSelect').value;
-  document.getElementById('resumePage').style.fontFamily = font;
+  document.getElementById('resumePage').style.fontFamily = document.getElementById('fontSelect').value;
   autoSave();
 }
 
@@ -819,12 +862,8 @@ function changeSpacing(val) {
 }
 
 function setLayout(type) {
-  if (type === 'two') {
-    document.getElementById('resumePage').style.columnCount = '2';
-    document.getElementById('resumePage').style.columnGap = '20px';
-  } else {
-    document.getElementById('resumePage').style.columnCount = '';
-  }
+  document.getElementById('resumePage').style.columnCount = type === 'two' ? '2' : '';
+  document.getElementById('resumePage').style.columnGap = type === 'two' ? '20px' : '';
   autoSave();
 }
 
@@ -836,35 +875,15 @@ function setTemplate(el, name) {
   setStatus('Template: ' + name.charAt(0).toUpperCase() + name.slice(1), 'ok');
 }
 
-// ── FILE HANDLING ──
-function handleResumeUpload(file) {
-  if (!file) return;
-  uploadedFile = file;
-  setStatus('Resume uploaded: ' + file.name, 'ok');
-  // Try to read the file and populate fields
-  if (file.name.toLowerCase().endsWith('.pdf')) {
-    // We can't parse PDF client-side, just store for API use
-  } else if (file.name.toLowerCase().endsWith('.docx')) {
-    // Same - store for API use
-  }
-}
-
-function handleRebuildFile(inp) {
-  if (!inp.files[0]) return;
-  rebuildFile = inp.files[0];
-  document.getElementById('rbFileName').textContent = '✓ ' + rebuildFile.name;
-  document.getElementById('rbRunBtn').disabled = false;
-}
-
 // ── AI POLISH ──
 async function doPolish() {
   const input = document.getElementById('achieveTa');
   const btn = document.getElementById('polishBtn');
   if (!input.value.trim()) { setStatus('Write an achievement first.', 'err'); return; }
-  if (!uploadedFile) { setStatus('Upload a resume first so AI can classify.', 'err'); return; }
+  if (!uploadedFile) { setStatus('Upload a resume first so AI can classify it.', 'err'); return; }
 
   btn.disabled = true;
-  btn.innerHTML = '&#8987; Analyzing...';
+  btn.innerHTML = '\u23F3 Analyzing...';
   setStatus('AI is reading your resume and polishing...', 'loading');
 
   const form = new FormData();
@@ -884,7 +903,7 @@ async function doPolish() {
     setStatus('Server error - try again in 30 seconds.', 'err');
   } finally {
     btn.disabled = false;
-    btn.innerHTML = '&#10024; Polish';
+    btn.innerHTML = '\u2728 AI Polish & Classify';
   }
 }
 
@@ -921,10 +940,7 @@ async function doInject() {
 
 // ── DOWNLOAD ──
 async function download(format) {
-  if (!uploadedFile) {
-    setStatus('Upload a resume first for full export.', 'err');
-    return;
-  }
+  if (!uploadedFile) { setStatus('Upload a resume first for export.', 'err'); return; }
   setStatus('Generating ' + format.toUpperCase() + '...', 'loading');
 
   const form = new FormData();
@@ -1003,7 +1019,7 @@ function autoSave() {
 function previewResume() {
   const page = document.getElementById('resumePage');
   const w = window.open('', '_blank');
-  w.document.write('<html><head><title>Resume Preview</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><style>body{margin:0;display:flex;justify-content:center;background:#f0f0f0;padding:20px}</style></head><body>' + page.outerHTML + '</body></html>');
+  w.document.write('<!DOCTYPE html><html><head><title>Resume Preview</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><style>body{margin:0;display:flex;justify-content:center;background:#f0f0f0;padding:20px}</style></head><body>' + page.outerHTML + '</body></html>');
   w.document.close();
 }
 
@@ -1022,13 +1038,12 @@ function closeMobile() {
   document.getElementById('mobileOverlay').classList.remove('show');
 }
 
-// ── FORMAT TEXT (rich text placeholder) ──
+// ── FORMAT TEXT ──
 function formatText(cmd) {
-  // Visual feedback only - would need contenteditable for real formatting
   setStatus('Formatting: ' + cmd, '');
 }
 
-// ── INIT: Read params from index.html ──
+// ── INIT ──
 (function init() {
   const params = new URLSearchParams(window.location.search);
   const ats = params.get('ats');
@@ -1038,34 +1053,32 @@ function formatText(cmd) {
   if (name) document.getElementById('rName').textContent = name;
   if (title) document.getElementById('rTitle').textContent = title;
 
-  // Try to read sessionStorage for pending data
   try {
     const pendingUpdate = sessionStorage.getItem('pendingUpdate');
     const pendingHeading = sessionStorage.getItem('pendingHeading');
     const resumeFileName = sessionStorage.getItem('resumeFileName');
 
-    if (pendingUpdate) {
-      document.getElementById('achieveTa').value = pendingUpdate;
-    }
+    if (pendingUpdate) document.getElementById('achieveTa').value = pendingUpdate;
     if (pendingHeading) {
       chosenHeading = pendingHeading;
       document.getElementById('headingBadge').textContent = pendingHeading;
       document.getElementById('headingPill').classList.add('show');
     }
     if (resumeFileName) {
-      // We can't restore the File object from sessionStorage, but we can show the name
       setStatus('Resume from Hub: ' + resumeFileName + '. Re-upload for full features.', 'ok');
     }
   } catch(e) {}
 
-  // Handle file drag-drop on preview area
+  // Drag-drop on preview area too
   const preview = document.getElementById('previewArea');
   ['dragenter','dragover'].forEach(e => preview.addEventListener(e, ev => ev.preventDefault()));
   ['dragleave','drop'].forEach(e => preview.addEventListener(e, ev => ev.preventDefault()));
   preview.addEventListener('drop', ev => {
     const f = ev.dataTransfer.files[0];
-    if (f && (f.name.endsWith('.pdf') || f.name.endsWith('.docx'))) {
-      handleResumeUpload(f);
+    if (f && (f.name.toLowerCase().endsWith('.pdf') || f.name.toLowerCase().endsWith('.docx'))) {
+      const dt = new DataTransfer(); dt.items.add(f);
+      document.getElementById('resumeUpload').files = dt.files;
+      handleResumeUpload(document.getElementById('resumeUpload'));
     }
   });
 })();
