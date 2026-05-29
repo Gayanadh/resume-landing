@@ -12,18 +12,11 @@ export async function POST(request: NextRequest) {
     const fileName = file.name.toLowerCase()
     let extractedText = ''
 
-    // Read the file as text (works for .txt, basic .docx XML extraction)
     if (fileName.endsWith('.txt')) {
       extractedText = await file.text()
     } else if (fileName.endsWith('.docx')) {
-      // Extract text from DOCX by reading XML content
       const buffer = await file.arrayBuffer()
-      const bytes = new Uint8Array(buffer)
-
-      // Try to find text between XML tags in the DOCX (word/document.xml)
-      const text = new TextDecoder('utf-8', { fatal: false }).decode(bytes)
-
-      // Extract text between <w:t> tags (DOCX format)
+      const text = new TextDecoder('utf-8', { fatal: false }).decode(new Uint8Array(buffer))
       const wttMatches = text.match(/<w:t[^>]*>([^<]+)<\/w:t>/g)
       if (wttMatches) {
         extractedText = wttMatches
@@ -33,70 +26,29 @@ export async function POST(request: NextRequest) {
           })
           .join(' ')
       }
-
-      // Fallback: extract any readable text
       if (!extractedText.trim()) {
-        // Remove binary noise and keep printable characters
-        extractedText = text
-          .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, ' ')
-          .replace(/\s+/g, ' ')
-          .trim()
+        extractedText = text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, ' ').replace(/\s+/g, ' ').trim()
       }
     } else if (fileName.endsWith('.pdf')) {
-      // For PDF, we try to extract text from the raw content
       const buffer = await file.arrayBuffer()
-      const bytes = new Uint8Array(buffer)
-      const text = new TextDecoder('utf-8', { fatal: false }).decode(bytes)
-
-      // Basic PDF text extraction - look for text between parentheses in Tj/TJ operators
+      const text = new TextDecoder('utf-8', { fatal: false }).decode(new Uint8Array(buffer))
       const tjMatches = text.match(/\(([^)]+)\)\s*Tj/g)
       const tjArrayMatches = text.match(/\[([^\]]+)\]\s*TJ/g)
-
       let pdfText = ''
       if (tjMatches) {
-        pdfText += tjMatches
-          .map((m) => {
-            const content = m.match(/\(([^)]+)\)/)
-            return content ? content[1] : ''
-          })
-          .join(' ')
+        pdfText += tjMatches.map((m) => { const c = m.match(/\(([^)]+)\)/); return c ? c[1] : '' }).join(' ')
       }
       if (tjArrayMatches) {
-        pdfText += ' ' + tjArrayMatches
-          .map((m) => {
-            const parts = m.match(/\(([^)]+)\)/g)
-            return parts ? parts.map((p) => p.slice(1, -1)).join(' ') : ''
-          })
-          .join(' ')
+        pdfText += ' ' + tjArrayMatches.map((m) => { const parts = m.match(/\(([^)]+)\)/g); return parts ? parts.map((p) => p.slice(1, -1)).join(' ') : '' }).join(' ')
       }
-
       extractedText = pdfText || text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, ' ').replace(/\s+/g, ' ').trim()
     } else {
-      // Try reading as plain text for other formats
-      try {
-        extractedText = await file.text()
-      } catch {
-        extractedText = ''
-      }
+      try { extractedText = await file.text() } catch { extractedText = '' }
     }
 
     if (!extractedText.trim()) {
       return NextResponse.json({
-        parsed: {
-          name: '',
-          title: '',
-          bio: '',
-          email: '',
-          phone: '',
-          location: '',
-          linkedin: '',
-          website: '',
-          skills: [],
-          experience: [],
-          education: [],
-          tools: [],
-          languages: [],
-        },
+        parsed: { name: '', title: '', bio: '', email: '', phone: '', location: '', linkedin: '', website: '', skills: [], experience: [], education: [], tools: [], languages: [] },
         rawText: '',
         warning: 'Could not extract text from this file. Try uploading a .txt or .docx file for better results.',
       })
@@ -104,8 +56,7 @@ export async function POST(request: NextRequest) {
 
     // Use AI to parse the extracted text into structured resume data
     try {
-      const ZAI = (await import('z-ai-web-dev-sdk')).default
-      const zai = await ZAI.create()
+      const { zAI } = await import('z-ai-web-dev-sdk')
 
       const parsePrompt = `You are a resume parser. Extract the following information from this resume text and return it as a JSON object with exactly these fields:
 
@@ -133,7 +84,8 @@ IMPORTANT: Return ONLY valid JSON, no markdown code blocks, no explanation.
 Resume text:
 ${extractedText.substring(0, 4000)}`
 
-      const response = await zai.chat.completions.create({
+      const response = await zAI.chat.completions.create({
+        model: 'default',
         messages: [
           { role: 'system', content: 'You are a resume parser that returns only valid JSON. No markdown, no code blocks, just raw JSON.' },
           { role: 'user', content: parsePrompt },
@@ -141,30 +93,23 @@ ${extractedText.substring(0, 4000)}`
       })
 
       const aiContent = response.choices?.[0]?.message?.content || ''
-
-      // Clean up AI response - remove markdown code blocks if present
-      let cleanJson = aiContent
-        .replace(/```json\s*/g, '')
-        .replace(/```\s*/g, '')
-        .trim()
+      let cleanJson = aiContent.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim()
 
       try {
         const parsed = JSON.parse(cleanJson)
         return NextResponse.json({ parsed, rawText: extractedText.substring(0, 500) })
       } catch {
-        // If JSON parse fails, try to extract JSON from the response
         const jsonMatch = cleanJson.match(/\{[\s\S]*\}/)
         if (jsonMatch) {
-          const parsed = JSON.parse(jsonMatch[0])
-          return NextResponse.json({ parsed, rawText: extractedText.substring(0, 500) })
+          try {
+            const parsed = JSON.parse(jsonMatch[0])
+            return NextResponse.json({ parsed, rawText: extractedText.substring(0, 500) })
+          } catch {
+            // JSON parse still failed
+          }
         }
-
         return NextResponse.json({
-          parsed: {
-            name: '', title: '', bio: extractedText.substring(0, 300),
-            email: '', phone: '', location: '', linkedin: '', website: '',
-            skills: [], experience: [], education: [], tools: [], languages: [],
-          },
+          parsed: { name: '', title: '', bio: extractedText.substring(0, 300), email: '', phone: '', location: '', linkedin: '', website: '', skills: [], experience: [], education: [], tools: [], languages: [] },
           rawText: extractedText.substring(0, 500),
           warning: 'AI could not structure the resume. The raw text has been added to the summary.',
         })
@@ -178,19 +123,10 @@ ${extractedText.substring(0, 4000)}`
 
       return NextResponse.json({
         parsed: {
-          name: '',
-          title: '',
-          bio: extractedText.substring(0, 300),
-          email: emailMatch?.[0] || '',
-          phone: phoneMatch?.[0] || '',
-          location: '',
-          linkedin: '',
-          website: '',
-          skills: [],
-          experience: [],
-          education: [],
-          tools: [],
-          languages: [],
+          name: '', title: '', bio: extractedText.substring(0, 300),
+          email: emailMatch?.[0] || '', phone: phoneMatch?.[0] || '',
+          location: '', linkedin: '', website: '',
+          skills: [], experience: [], education: [], tools: [], languages: [],
         },
         rawText: extractedText.substring(0, 500),
         warning: 'AI parsing unavailable. Basic extraction was performed. You can manually fill in the remaining fields.',
